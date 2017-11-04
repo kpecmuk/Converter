@@ -11,16 +11,16 @@ import java.util.List;
  * @since 04.11.2017
  */
 
-public class Times {
+class Times {
     private static final Logger log = LoggerFactory.getLogger(Times.class);
 
     private List<Time> timeList;
 
-    public Times() {
+    Times() {
         this.timeList = new ArrayList<>();
     }
 
-    public List<Time> getTimeList() {
+    List<Time> getTimeList() {
         return timeList;
     }
 }

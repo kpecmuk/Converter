@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
-    private static final String PATH = ("E:\\Coding\\Java_prog\\Text converter\\src\\main\\java\\ru\\kpecmuk\\text_converter\\");
+    private static final String PATH = ("E:\\Coding\\Java_prog\\Converter\\src\\main\\java\\ru\\kpecmuk\\text_converter\\");
 
     public static void main(String[] args) throws IOException {
 
