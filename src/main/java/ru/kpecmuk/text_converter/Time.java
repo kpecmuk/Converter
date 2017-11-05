@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 
 public class Time {
     private static final Logger log = LoggerFactory.getLogger(Time.class);
-
     private Integer hour;
     private Integer minute;
     private int busStopID;
@@ -21,17 +20,19 @@ public class Time {
         this.busStopID = busStopID;
     }
 
-    String print() {
+    /**
+     * @return время в формате 00:00
+     */
+    String getTime() {
         String result = "";
-//        Character min = minute;
-        if (Character.charCount(hour) % 2 == 1) {
+
+        if (hour < 10)
             result = "0";
-        }
         result += hour + ":";
-        if (Character.charCount(minute) % 2 == 1) {
+        if (minute < 10)
             result += "0";
-        }
         result += minute;
+
         return result;
     }
 

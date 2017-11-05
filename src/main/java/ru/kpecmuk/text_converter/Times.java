@@ -13,8 +13,7 @@ import java.util.List;
 
 class Times {
     private static final Logger log = LoggerFactory.getLogger(Times.class);
-
-    private List<Time> timeList;
+    private final List<Time> timeList;
 
     Times() {
         this.timeList = new ArrayList<>();
