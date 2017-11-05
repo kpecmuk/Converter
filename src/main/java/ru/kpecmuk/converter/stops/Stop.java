@@ -10,17 +10,17 @@ import org.slf4j.LoggerFactory;
 
 public class Stop {
     private static final Logger log = LoggerFactory.getLogger(Stop.class);
-    private int id;
+    private String id;
     private String title;
     private float lat;
     private float lng;
 
-    public Stop(int id, String title) {
+    public Stop(String id, String title) {
         this.id = id;
         this.title = title;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

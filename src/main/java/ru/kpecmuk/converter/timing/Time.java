@@ -12,10 +12,10 @@ public class Time {
     private static final Logger log = LoggerFactory.getLogger(Time.class);
     private int hour;
     private int minute;
-    private int busStopID;
-    private int busNumber;
+    private String busStopID;
+    private String busNumber;
 
-    public Time(int hour, int minute, int busNumber, int busStopID) {
+    public Time(int hour, int minute, String busNumber, String busStopID) {
         this.hour = hour;
         this.minute = minute;
         this.busNumber = busNumber;
@@ -38,11 +38,11 @@ public class Time {
         return result;
     }
 
-    public int getBusNumber() {
+    public String getBusNumber() {
         return this.busNumber;
     }
 
-    public int getBusStopID() {
+    public String getBusStopID() {
         return this.busStopID;
     }
 

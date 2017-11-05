@@ -19,8 +19,8 @@ import java.util.Objects;
 public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
     private static final String PATH = ("src\\main\\java\\ru\\kpecmuk\\converter\\");
-    private static int busStopId = 0;
-    private static int busNumber = 42;
+    private static String busStopId;
+    private static String busNumber;
 
     public static void main(String[] args) throws IOException {
 
@@ -31,12 +31,12 @@ public class Main {
         while ((line = fin.readLine()) != null) {
             if (Objects.equals(line, "bus")) {
                 line = lineFilter(fin.readLine());
-                busNumber = Integer.parseInt(line);
+                busNumber = line;
                 line = fin.readLine();
             }
             if (Objects.equals(line, "stop")) {
                 line = lineFilter(fin.readLine());
-                busStopId = Integer.parseInt(line);
+                busStopId = line;
                 line = fin.readLine();
             }
             line = lineFilter(line);
