@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
-    private static final String PATH = ("src\\main\\java\\ru\\kpecmuk\\converter\\");
+    private static final String PATH = ("src\\main\\java\\ru\\kpecmuk\\converter\\routes\\");
     private static String busStopId;
     private static String busNumber;
 
@@ -30,13 +30,11 @@ public class Main {
 
         while ((line = fin.readLine()) != null) {
             if (Objects.equals(line, "bus")) {
-                line = lineFilter(fin.readLine());
-                busNumber = line;
+                busNumber = lineFilter(fin.readLine());
                 line = fin.readLine();
             }
             if (Objects.equals(line, "stop")) {
-                line = lineFilter(fin.readLine());
-                busStopId = line;
+                busStopId = lineFilter(fin.readLine());
                 line = fin.readLine();
             }
             line = lineFilter(line);
