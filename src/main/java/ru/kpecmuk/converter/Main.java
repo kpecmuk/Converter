@@ -2,6 +2,8 @@ package ru.kpecmuk.converter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpecmuk.converter.timing.Time;
+import ru.kpecmuk.converter.timing.TimesList;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,25 +18,25 @@ import java.util.Objects;
 
 public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
-    private static final String PATH = ("src\\main\\java\\ru\\kpecmuk\\text_converter\\");
+    private static final String PATH = ("src\\main\\java\\ru\\kpecmuk\\converter\\");
     private static int busStopId = 0;
     private static int busNumber = 42;
 
     public static void main(String[] args) throws IOException {
 
-        Times busTimes = new Times();
+        TimesList busTimesList = new TimesList();
         BufferedReader fin = new BufferedReader(new FileReader(new File(PATH + "Route42.txt")));
         String line;
 
         while ((line = fin.readLine()) != null) {
             if (Objects.equals(line, "bus")) {
-                line = fin.readLine();
-                busNumber = convertToInt(lineFilter(line), 0);
+                line = lineFilter(fin.readLine());
+                busNumber = Integer.parseInt(line);
                 line = fin.readLine();
             }
             if (Objects.equals(line, "stop")) {
-                line = fin.readLine();
-                busStopId = convertToInt(lineFilter(line), 0);
+                line = lineFilter(fin.readLine());
+                busStopId = Integer.parseInt(line);
                 line = fin.readLine();
             }
             line = lineFilter(line);
@@ -45,10 +47,10 @@ public class Main {
             //Теперь забираем минуты и закидываем всё в список TimeList
             for (int i = 2; i < line.length() - 1; i = i + 2) {
                 int minute = convertToInt(line, i);
-                busTimes.getTimeList().add(new Time(hour, minute, busNumber, busStopId));
+                busTimesList.getTimeList().add(new Time(hour, minute, busNumber, busStopId));
             }
         }
-        busTimes.getTimeList().forEach(time -> System.out.println(time.getTime()));
+        busTimesList.getTimeList().forEach(time -> System.out.println(time.getTime()));
     }
 
     /**

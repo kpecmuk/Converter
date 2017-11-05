@@ -1,4 +1,4 @@
-package ru.kpecmuk.converter;
+package ru.kpecmuk.converter.timing;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +15,7 @@ public class Time {
     private int busStopID;
     private int busNumber;
 
-    Time(int hour, int minute, int busNumber, int busStopID) {
+    public Time(int hour, int minute, int busNumber, int busStopID) {
         this.hour = hour;
         this.minute = minute;
         this.busNumber = busNumber;
@@ -25,7 +25,7 @@ public class Time {
     /**
      * @return время в формате 00:00
      */
-    String getTime() {
+    public String getTime() {
         String result = "";
 
         if (hour < 10)
