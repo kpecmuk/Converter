@@ -1,4 +1,4 @@
-package ru.kpecmuk.text_converter;
+package ru.kpecmuk.converter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,13 +10,15 @@ import org.slf4j.LoggerFactory;
 
 public class Time {
     private static final Logger log = LoggerFactory.getLogger(Time.class);
-    private Integer hour;
-    private Integer minute;
+    private int hour;
+    private int minute;
     private int busStopID;
+    private int busNumber;
 
-    Time(Integer hour, Integer minute, int busStopID) {
+    Time(int hour, int minute, int busNumber, int busStopID) {
         this.hour = hour;
         this.minute = minute;
+        this.busNumber = busNumber;
         this.busStopID = busStopID;
     }
 
@@ -34,6 +36,10 @@ public class Time {
         result += minute;
 
         return result;
+    }
+
+    public int getBusNumber() {
+        return this.busNumber;
     }
 
     public int getBusStopID() {

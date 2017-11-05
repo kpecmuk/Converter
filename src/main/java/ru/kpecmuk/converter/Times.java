@@ -1,4 +1,4 @@
-package ru.kpecmuk.text_converter;
+package ru.kpecmuk.converter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
