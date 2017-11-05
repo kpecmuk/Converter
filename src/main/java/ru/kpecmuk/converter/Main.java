@@ -25,7 +25,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         TimesList busTimesList = new TimesList();
-        BufferedReader fin = new BufferedReader(new FileReader(new File(PATH + "Route42.txt")));
+        BufferedReader fin = new BufferedReader(new FileReader(new File(PATH + "Route42work.txt")));
         String line;
 
         while ((line = fin.readLine()) != null) {
