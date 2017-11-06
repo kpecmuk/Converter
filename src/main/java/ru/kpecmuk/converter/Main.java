@@ -2,6 +2,8 @@ package ru.kpecmuk.converter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpecmuk.converter.stops.Stop;
+import ru.kpecmuk.converter.stops.StopsList;
 import ru.kpecmuk.converter.timing.Time;
 import ru.kpecmuk.converter.timing.TimesList;
 
@@ -24,17 +26,19 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        TimesList busTimesList = new TimesList();
+        TimesList timing42 = new TimesList();
+
+
         BufferedReader fin = new BufferedReader(new FileReader(new File(PATH + "Route42work.txt")));
         String line;
 
         while ((line = fin.readLine()) != null) {
             if (Objects.equals(line, "bus")) {
-                busNumber = lineFilter(fin.readLine());
+                busNumber = fin.readLine();
                 line = fin.readLine();
             }
             if (Objects.equals(line, "stop")) {
-                busStopId = lineFilter(fin.readLine());
+                busStopId = fin.readLine();
                 line = fin.readLine();
             }
             line = lineFilter(line);
@@ -45,10 +49,35 @@ public class Main {
             //Теперь забираем минуты и закидываем всё в список TimeList
             for (int i = 2; i < line.length() - 1; i = i + 2) {
                 int minute = convertToInt(line, i);
-                busTimesList.getTimeList().add(new Time(hour, minute, busNumber, busStopId));
+                timing42.getTimeList().add(new Time(hour, minute, busNumber, busStopId));
             }
         }
-        busTimesList.getTimeList().forEach(time -> System.out.println(time.getTime()));
+        fin.close();
+
+        fin = new BufferedReader(new FileReader(new File(PATH + "Stops.txt")));
+
+        String title, id;
+        StopsList stopsList = new StopsList();
+
+        while ((title = fin.readLine()) != null) {
+            id = fin.readLine();
+            stopsList.getStopsList().add(new Stop(id, title));
+        }
+        fin.close();
+
+        timing42.getTimeList().forEach(time -> {
+            String t = time.getTime();
+            String stopTitle = null;
+
+            for (Stop stop : stopsList.getStopsList()) {
+                if (Objects.equals(time.getBusStopID(), stop.getId())) {
+                    stopTitle = stop.getTitle();
+                    break;
+                }
+            }
+
+            System.out.println(time.getTime() + " - " + stopTitle);
+        });
     }
 
     /**
@@ -63,7 +92,7 @@ public class Main {
     }
 
     /**
-     * Фильтруем строку, выкидываем всё вроме цифр
+     * Фильтруем строку, выкидываем всё кроме цифр
      *
      * @param line строка вида 6	112438
      * @return строку вида 6112438
