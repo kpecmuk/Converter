@@ -61,23 +61,13 @@ public class Main {
 
         while ((title = fin.readLine()) != null) {
             id = fin.readLine();
-            stopsList.getStopsList().add(new Stop(id, title));
+            stopsList.getStopsList().put(id, new Stop(id, title));
         }
         fin.close();
 
-        timing42.getTimeList().forEach(time -> {
-            String t = time.getTime();
-            String stopTitle = null;
-
-            for (Stop stop : stopsList.getStopsList()) {
-                if (Objects.equals(time.getBusStopID(), stop.getId())) {
-                    stopTitle = stop.getTitle();
-                    break;
-                }
-            }
-
-            System.out.println(time.getTime() + " - " + stopTitle);
-        });
+        timing42.getTimeList().forEach(time ->
+                System.out.println(time.getTime()
+                        + " - " + stopsList.getStopsList().get(time.getBusStopID()).getTitle()));
     }
 
     /**

@@ -3,8 +3,8 @@ package ru.kpecmuk.converter.stops;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author kpecmuk
@@ -14,10 +14,9 @@ import java.util.List;
 public class StopsList {
     private static final Logger log = LoggerFactory.getLogger(StopsList.class);
 
-    private final List<Stop> stopsList = new ArrayList<>();
+    private final Map<String, Stop> stopsList = new HashMap<>();
 
-    public List<Stop> getStopsList() {
-        return stopsList;
+    public Map<String, Stop> getStopsList() {
+        return this.stopsList;
     }
-
 }
