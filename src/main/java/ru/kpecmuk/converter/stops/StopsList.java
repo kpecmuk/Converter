@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Список остановок
+ *
  * @author kpecmuk
  * @since 05.11.2017
  */
@@ -14,9 +16,9 @@ import java.util.Map;
 public class StopsList {
     private static final Logger log = LoggerFactory.getLogger(StopsList.class);
 
-    private final Map<String, Stop> stopsList = new HashMap<>();
+    private final Map<String, Stop> stopMap = new HashMap<>();
 
-    public Map<String, Stop> getStopsList() {
-        return this.stopsList;
+    public Map<String, Stop> getStopMap() {
+        return this.stopMap;
     }
 }

@@ -21,10 +21,10 @@ public class Stop {
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 }

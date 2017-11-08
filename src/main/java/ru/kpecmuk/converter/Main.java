@@ -6,6 +6,7 @@ import ru.kpecmuk.converter.stops.Stop;
 import ru.kpecmuk.converter.stops.StopsList;
 import ru.kpecmuk.converter.timing.Time;
 import ru.kpecmuk.converter.timing.TimesList;
+import ru.kpecmuk.converter.utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -26,6 +27,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+        Utils utils = new Utils();
         TimesList timing42 = new TimesList();
 
 
@@ -41,14 +43,14 @@ public class Main {
                 busStopId = fin.readLine();
                 line = fin.readLine();
             }
-            line = lineFilter(line);
+            line = utils.lineFilter(line);
 
             //Сразу забираем часы, так как они идут первыми символами в строке
-            int hour = convertToInt(line, 0);
+            int hour = utils.convertToInt(line, 0);
 
             //Теперь забираем минуты и закидываем всё в список TimeList
             for (int i = 2; i < line.length() - 1; i = i + 2) {
-                int minute = convertToInt(line, i);
+                int minute = utils.convertToInt(line, i);
                 timing42.getTimeList().add(new Time(hour, minute, busNumber, busStopId));
             }
         }
@@ -61,37 +63,12 @@ public class Main {
 
         while ((title = fin.readLine()) != null) {
             id = fin.readLine();
-            stopsList.getStopsList().put(id, new Stop(id, title));
+            stopsList.getStopMap().put(id, new Stop(id, title));
         }
         fin.close();
 
         timing42.getTimeList().forEach(time ->
                 System.out.println(time.getTime()
-                        + " - " + stopsList.getStopsList().get(time.getBusStopID()).getTitle()));
-    }
-
-    /**
-     * @param line строка на входе типа 6112438
-     * @param i    порядковый индекс как в массиве
-     * @return result типа int, составленный из i и i+1
-     */
-    private static int convertToInt(String line, int i) {
-        int result = Character.getNumericValue(line.charAt(i));
-        result = result * 10 + Character.getNumericValue(line.charAt(i + 1));
-        return result;
-    }
-
-    /**
-     * Фильтруем строку, выкидываем всё кроме цифр
-     *
-     * @param line строка вида 6	112438
-     * @return строку вида 6112438
-     */
-    private static String lineFilter(String line) {
-        String result = line.replaceAll("\\D+", "");
-        if (result.length() % 2 == 1) {
-            result = "0" + result;
-        }
-        return result;
+                        + " - " + stopsList.getStopMap().get(time.getBusStopID()).getTitle()));
     }
 }
