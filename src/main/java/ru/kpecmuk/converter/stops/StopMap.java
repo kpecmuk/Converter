@@ -13,8 +13,8 @@ import java.util.Map;
  * @since 05.11.2017
  */
 
-public class StopsList {
-    private static final Logger log = LoggerFactory.getLogger(StopsList.class);
+public class StopMap {
+    private static final Logger log = LoggerFactory.getLogger(StopMap.class);
 
     private final Map<String, Stop> stopMap = new HashMap<>();
 
