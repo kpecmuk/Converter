@@ -1,0 +1,4 @@
+CREATE TABLE stops(
+stop_id varchar(5) UNIQUE
+stop_title varchar(50)
+);
