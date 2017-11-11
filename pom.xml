@@ -63,7 +63,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ru.kpecmuk.converter.Main</mainClass>
+                            <mainClass>ru.kpecmuk.converter.Main.main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
