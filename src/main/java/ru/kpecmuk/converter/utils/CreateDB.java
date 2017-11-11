@@ -8,6 +8,9 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 /**
+ * executeQuery - SELECT
+ * executeUpdate - INSERT, UPDATE, DELETE, CREATE TABLE и DROP TABLE
+ *
  * @author kpecmuk
  * @since 11.11.2017
  */
