@@ -6,6 +6,7 @@ import ru.kpecmuk.converter.loader.LoadRoute;
 import ru.kpecmuk.converter.loader.LoadStops;
 import ru.kpecmuk.converter.stops.StopMap;
 import ru.kpecmuk.converter.timing.TimesList;
+import ru.kpecmuk.converter.utils.CreateDB;
 import ru.kpecmuk.converter.utils.Utils;
 
 import java.io.IOException;
@@ -33,5 +34,11 @@ public class Main {
         timing42.getTimeList().forEach(time ->
                 System.out.println(time.getTime()
                         + " - " + stopMap.getStopMap().get(time.getBusStopID()).getTitle()));
+
+        System.err.close();
+        System.setErr(System.out);
+
+        CreateDB createDB = new CreateDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
+        createDB.send();
     }
 }
