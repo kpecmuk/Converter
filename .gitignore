@@ -1,7 +1,6 @@
 .idea
 target
 test
-src/main/resources
 *.iml
 
 *.jar

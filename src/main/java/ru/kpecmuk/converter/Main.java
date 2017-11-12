@@ -2,11 +2,12 @@ package ru.kpecmuk.converter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpecmuk.converter.database.CreateDB;
+import ru.kpecmuk.converter.database.SaveStopsToDB;
 import ru.kpecmuk.converter.loader.LoadRoute;
 import ru.kpecmuk.converter.loader.LoadStops;
 import ru.kpecmuk.converter.stops.StopMap;
 import ru.kpecmuk.converter.timing.TimesList;
-import ru.kpecmuk.converter.utils.CreateDB;
 import ru.kpecmuk.converter.utils.Utils;
 
 import java.io.IOException;
@@ -40,5 +41,8 @@ public class Main {
 
         CreateDB createDB = new CreateDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
         createDB.send();
+
+        SaveStopsToDB saveStopsToDB = new SaveStopsToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
+        saveStopsToDB.save(stopMap);
     }
 }
