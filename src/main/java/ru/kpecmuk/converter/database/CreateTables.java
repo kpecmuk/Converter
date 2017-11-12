@@ -15,14 +15,14 @@ import java.sql.Statement;
  * @since 11.11.2017
  */
 
-public class CreateDB extends Database {
-    private static final Logger log = LoggerFactory.getLogger(CreateDB.class);
+public class CreateTables extends Database {
+    private static final Logger log = LoggerFactory.getLogger(CreateTables.class);
 
-    public CreateDB(String url, String user, String password) {
+    public CreateTables(String url, String user, String password) {
         super(url, user, password);
     }
 
-    public void send() {
+    public void create() {
         try {
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(url, user, password);
@@ -43,11 +43,10 @@ public class CreateDB extends Database {
             stmt.executeUpdate(sql);
 
             sql = "CREATE TABLE IF NOT EXISTS time(" +
-                    "pk INTEGER NOT NULL CONSTRAINT time_pk PRIMARY KEY, " +
                     "hour SMALLINT, " +
                     "minute  SMALLINT, " +
                     "route VARCHAR(10), " +
-                    "stop_id VARCHAR(10), " +
+                    "stop VARCHAR(10), " +
                     "days VARCHAR(7));";
             stmt.executeUpdate(sql);
 
