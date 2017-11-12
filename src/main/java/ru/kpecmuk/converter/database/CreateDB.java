@@ -30,7 +30,7 @@ public class CreateDB extends Database {
             log.info("Opened database successfully");
 
             Statement stmt = con.createStatement();
-            String sql = "CREATE TABLE IF NOT EXISTS routes (route VARCHAR(10) NOT NULL CONSTRAINT routes_pk PRIMARY KEY," +
+            String sql = "CREATE TABLE IF NOT EXISTS routes (id VARCHAR(10) NOT NULL CONSTRAINT routes_pk PRIMARY KEY," +
                     " title VARCHAR(50) NOT NULL)";
             stmt.executeUpdate(sql);
 
@@ -38,11 +38,17 @@ public class CreateDB extends Database {
                     " title VARCHAR(50) NOT NULL);";
             stmt.executeUpdate(sql);
 
-            sql = "CREATE TABLE IF NOT EXISTS time(pk INTEGER NOT NULL CONSTRAINT time_pk PRIMARY KEY," +
-                    " hour SMALLINT," +
-                    " minute  SMALLINT," +
-                    " route VARCHAR(10) CONSTRAINT time_routes_fk REFERENCES routes," +
-                    " stop_id VARCHAR(10) CONSTRAINT time_stops_fk REFERENCES stops);";
+            sql = "CREATE TABLE IF NOT EXISTS days (id VARCHAR(7) NOT NULL CONSTRAINT days_pk PRIMARY KEY," +
+                    " title VARCHAR(100) NOT NULL);";
+            stmt.executeUpdate(sql);
+
+            sql = "CREATE TABLE IF NOT EXISTS time(" +
+                    "pk INTEGER NOT NULL CONSTRAINT time_pk PRIMARY KEY, " +
+                    "hour SMALLINT, " +
+                    "minute  SMALLINT, " +
+                    "route VARCHAR(10), " +
+                    "stop_id VARCHAR(10), " +
+                    "days VARCHAR(7));";
             stmt.executeUpdate(sql);
 
             stmt.close();
@@ -52,6 +58,6 @@ public class CreateDB extends Database {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        log.info("Records created successfully");
+        log.info("Tables: routes, stops, days, time created successfully");
     }
 }

@@ -1,1 +1,27 @@
-INSERT INTO stops (id, title) VALUES ('13a', 'Моко');
+CREATE TABLE days
+(
+  id    VARCHAR(7)   NOT NULL CONSTRAINT days_pk PRIMARY KEY,
+  title VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE stops
+(
+  id    VARCHAR(10) NOT NULL CONSTRAINT stops_pk PRIMARY KEY,
+  title VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE routes
+(
+  id    VARCHAR(10) NOT NULL CONSTRAINT routes_pk PRIMARY KEY,
+  title VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE time
+(
+  pk      INTEGER NOT NULL CONSTRAINT time_pk PRIMARY KEY,
+  hour    SMALLINT,
+  minute  SMALLINT,
+  route   VARCHAR(10) CONSTRAINT time_routes_fk REFERENCES routes,
+  stop_id VARCHAR(10) CONSTRAINT time_stops_fk REFERENCES stops,
+  days    VARCHAR(7) CONSTRAINT time_days_fk REFERENCES days
+);

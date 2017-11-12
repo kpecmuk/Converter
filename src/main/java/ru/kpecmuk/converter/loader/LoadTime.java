@@ -14,13 +14,13 @@ import java.util.Objects;
  * @since 09.11.2017
  */
 
-public class LoadRoute extends Load {
-    private static final Logger log = LoggerFactory.getLogger(LoadRoute.class);
+public class LoadTime extends Load {
+    private static final Logger log = LoggerFactory.getLogger(LoadTime.class);
 
     private TimesList timesList;
     private Utils utils;
 
-    public LoadRoute(TimesList timesList, String fileName, Utils utils) throws IOException {
+    public LoadTime(TimesList timesList, String fileName, Utils utils) throws IOException {
         super(fileName);
         this.timesList = timesList;
         this.utils = utils;
@@ -28,16 +28,20 @@ public class LoadRoute extends Load {
 
     public final void load() throws IOException {
         openFile();
-        String line, busNumber = null, busStopId = null;
+        String line, days = "1234567", busNumber = null, busStopId = null;
 
         while ((line = fin.readLine()) != null) {
+            if (Objects.equals(line, "days")) {
+                days = fin.readLine();
+                continue;
+            }
             if (Objects.equals(line, "bus")) {
                 busNumber = fin.readLine();
-                line = fin.readLine();
+                continue;
             }
             if (Objects.equals(line, "stop")) {
                 busStopId = fin.readLine();
-                line = fin.readLine();
+                continue;
             }
             line = utils.lineFilter(line);
 
@@ -45,7 +49,7 @@ public class LoadRoute extends Load {
 
             for (int i = 2; i < line.length() - 1; i = i + 2) {
                 int minute = utils.convertToInt(line, i);
-                timesList.getTimeList().add(new Time(hour, minute, busNumber, busStopId));
+                timesList.getTimeList().add(new Time(hour, minute, busNumber, busStopId, days));
             }
         }
         closeFile();

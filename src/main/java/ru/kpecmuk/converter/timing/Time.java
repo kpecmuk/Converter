@@ -14,12 +14,14 @@ public class Time {
     private int minute;
     private String busStopID;
     private String busNumber;
+    private String days;
 
-    public Time(int hour, int minute, String busNumber, String busStopID) {
+    public Time(int hour, int minute, String busNumber, String busStopID, String days) {
         this.hour = hour;
         this.minute = minute;
         this.busNumber = busNumber;
         this.busStopID = busStopID;
+        this.days = days;
     }
 
     /**
@@ -52,5 +54,9 @@ public class Time {
 
     public int getMinute() {
         return this.minute;
+    }
+
+    public String getDays() {
+        return days;
     }
 }
