@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
  * @since 12.11.2017
  */
 
-class Database {
+abstract class Database {
     private static final Logger log = LoggerFactory.getLogger(Database.class);
 
     // JDBC URL, username and password of MySQL server

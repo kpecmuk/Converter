@@ -22,7 +22,7 @@ public class SaveStopsToDB extends Database {
         super(url, user, password);
     }
 
-    public void save(StopMap map) {
+    public final void save(StopMap map) {
         try {
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(url, user, password);
@@ -43,7 +43,6 @@ public class SaveStopsToDB extends Database {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        log.info("Records created successfully");
+        log.info("STOPS created successfully");
     }
-
 }

@@ -43,6 +43,6 @@ public class SaveTimeToDB extends Database {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        log.info("Records created successfully");
+        log.info("TIMES created successfully");
     }
 }

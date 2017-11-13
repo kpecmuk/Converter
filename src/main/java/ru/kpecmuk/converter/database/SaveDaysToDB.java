@@ -36,7 +36,7 @@ public class SaveDaysToDB extends Database {
     /**
      * Сохранение карты дней недели в таблицу days
      */
-    public void save() {
+    public final void save() {
         try {
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(url, user, password);
@@ -57,6 +57,6 @@ public class SaveDaysToDB extends Database {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        log.info("Records created successfully");
+        log.info("DAYS created successfully");
     }
 }

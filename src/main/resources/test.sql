@@ -24,3 +24,10 @@ CREATE TABLE time
   stop   VARCHAR(10) REFERENCES stops (id),
   days   VARCHAR(7) REFERENCES days (id)
 );
+
+SELECT
+  hour,
+  minute
+FROM time
+WHERE stop = '1a' AND hour = 7
+
