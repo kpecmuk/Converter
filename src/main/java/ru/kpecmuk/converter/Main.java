@@ -2,9 +2,7 @@ package ru.kpecmuk.converter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpecmuk.converter.database.SaveDaysToDB;
-import ru.kpecmuk.converter.database.SaveStopsToDB;
-import ru.kpecmuk.converter.database.SaveTimeToDB;
+import ru.kpecmuk.converter.database.*;
 import ru.kpecmuk.converter.loader.LoadStops;
 import ru.kpecmuk.converter.loader.LoadTime;
 import ru.kpecmuk.converter.stops.StopMap;
@@ -20,7 +18,7 @@ import java.io.IOException;
 
 public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
-    private static final String PATH = ("src\\main\\java\\ru\\kpecmuk\\converter\\routes\\");
+    private static final String PATH = ("src\\main\\resources\\");
 
     public static void main(String[] args) throws IOException {
         Utils utils = new Utils();
@@ -40,21 +38,24 @@ public class Main {
         System.err.close();
         System.setErr(System.out);
 
-//        //Создаём таблицы
-//        CreateTables tables = new CreateTables("jdbc:postgresql://localhost:5432/transport", "user", "user");
-//        tables.create();
+        //Создаём таблицы
+        CreateTables tables = new CreateTables("jdbc:postgresql://localhost:5432/transport", "user", "user");
+        tables.create();
 
         //сохраняем данные об остановках в таблицу
-        SaveStopsToDB saveStopsToDB = new SaveStopsToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
-        saveStopsToDB.save(stopMap);
+        SaveStopsToDB stopsToDB = new SaveStopsToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
+        stopsToDB.save(stopMap);
 
         //сохраняем данные о днях в таблицу
-        SaveDaysToDB saveDaysToDB = new SaveDaysToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
-        saveDaysToDB.createDays();
-        saveDaysToDB.save();
+        SaveDaysToDB daysToDB = new SaveDaysToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
+        daysToDB.save();
+
+        //
+        SaveRoutesToDB routesToDB = new SaveRoutesToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
+        routesToDB.save();
 
         //сохранение времени
-        SaveTimeToDB saveTimeToDB = new SaveTimeToDB("jdbc:postgresql://localhost:5432/transport", "user", "user");
+        SaveTimeToDB saveTimeToDB = new SaveTimeToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
         saveTimeToDB.save(timing42);
     }
 }

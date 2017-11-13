@@ -30,24 +30,27 @@ public class CreateTables extends Database {
             log.info("Opened database successfully");
 
             Statement stmt = con.createStatement();
-            String sql = "CREATE TABLE IF NOT EXISTS routes (id VARCHAR(10) NOT NULL CONSTRAINT routes_pk PRIMARY KEY," +
-                    " title VARCHAR(50) NOT NULL)";
+            String sql = "CREATE TABLE IF NOT EXISTS routes (" +
+                    "id VARCHAR(10) NOT NULL PRIMARY KEY, " +
+                    "title VARCHAR(50) NOT NULL)";
             stmt.executeUpdate(sql);
 
-            sql = "CREATE TABLE IF NOT EXISTS stops (id VARCHAR(10) NOT NULL CONSTRAINT stops_pk PRIMARY KEY," +
-                    " title VARCHAR(50) NOT NULL);";
+            sql = "CREATE TABLE IF NOT EXISTS stops (" +
+                    "id VARCHAR(10) NOT NULL PRIMARY KEY, " +
+                    "title VARCHAR(50) NOT NULL);";
             stmt.executeUpdate(sql);
 
-            sql = "CREATE TABLE IF NOT EXISTS days (id VARCHAR(7) NOT NULL CONSTRAINT days_pk PRIMARY KEY," +
-                    " title VARCHAR(100) NOT NULL);";
+            sql = "CREATE TABLE IF NOT EXISTS days (" +
+                    "id VARCHAR(7) NOT NULL PRIMARY KEY, " +
+                    "title VARCHAR(100) NOT NULL);";
             stmt.executeUpdate(sql);
 
-            sql = "CREATE TABLE IF NOT EXISTS time(" +
+            sql = "CREATE TABLE IF NOT EXISTS time (" +
                     "hour SMALLINT, " +
                     "minute  SMALLINT, " +
-                    "route VARCHAR(10), " +
-                    "stop VARCHAR(10), " +
-                    "days VARCHAR(7));";
+                    "route VARCHAR(10) REFERENCES routes(id), " +
+                    "stop VARCHAR(10) REFERENCES stops(id), " +
+                    "days VARCHAR(7) REFERENCES days(id));";
             stmt.executeUpdate(sql);
 
             stmt.close();

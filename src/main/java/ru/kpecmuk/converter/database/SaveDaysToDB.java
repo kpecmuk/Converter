@@ -21,12 +21,6 @@ public class SaveDaysToDB extends Database {
 
     public SaveDaysToDB(String url, String user, String password) {
         super(url, user, password);
-    }
-
-    /**
-     * Создаём карту дней  недели для таблицы
-     */
-    public void createDays() {
         this.days.put("1", "Понедельник");
         this.days.put("2", "Вторник");
         this.days.put("3", "Среда");
