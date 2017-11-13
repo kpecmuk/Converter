@@ -2,8 +2,8 @@ package ru.kpecmuk.converter.database;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpecmuk.converter.stops.Stop;
-import ru.kpecmuk.converter.stops.StopMap;
+import ru.kpecmuk.converter.routes.Route;
+import ru.kpecmuk.converter.routes.RouteMap;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,17 +12,17 @@ import java.util.Map;
 
 /**
  * @author kpecmuk
- * @since 12.11.2017
+ * @since 13.11.2017
  */
 
-public class SaveStopsToDB extends Database {
-    private static final Logger log = LoggerFactory.getLogger(SaveStopsToDB.class);
+public class SaveRoutesToDB extends Database {
+    private static final Logger log = LoggerFactory.getLogger(SaveRoutesToDB.class);
 
-    public SaveStopsToDB(String url, String user, String password) {
+    SaveRoutesToDB(String url, String user, String password) {
         super(url, user, password);
     }
 
-    public void save(StopMap map) {
+    public void save(RouteMap map) {
         try {
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(url, user, password);
@@ -30,8 +30,8 @@ public class SaveStopsToDB extends Database {
             log.info("Opened database successfully");
 
             Statement stmt = con.createStatement();
-            for (Map.Entry<String, Stop> pair : map.getStopMap().entrySet()) {
-                String sql = "INSERT INTO stops (id, title) VALUES ('" + pair.getValue().getId() +
+            for (Map.Entry<String, Route> pair : map.getRouteMap().entrySet()) {
+                String sql = "INSERT INTO routes (id, title) VALUES ('" + pair.getValue().getId() +
                         "', '" + pair.getValue().getTitle() + "');";
                 stmt.executeUpdate(sql);
             }
@@ -45,5 +45,4 @@ public class SaveStopsToDB extends Database {
         }
         log.info("Records created successfully");
     }
-
 }

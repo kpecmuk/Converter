@@ -2,7 +2,6 @@ package ru.kpecmuk.converter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpecmuk.converter.database.CreateTables;
 import ru.kpecmuk.converter.database.SaveDaysToDB;
 import ru.kpecmuk.converter.database.SaveStopsToDB;
 import ru.kpecmuk.converter.database.SaveTimeToDB;
@@ -41,16 +40,16 @@ public class Main {
         System.err.close();
         System.setErr(System.out);
 
-        //Создаём таблицы
-        CreateTables tables = new CreateTables("jdbc:postgresql://localhost:5432/transport", "user", "user");
-        tables.create();
+//        //Создаём таблицы
+//        CreateTables tables = new CreateTables("jdbc:postgresql://localhost:5432/transport", "user", "user");
+//        tables.create();
 
         //сохраняем данные об остановках в таблицу
-        SaveStopsToDB saveStopsToDB = new SaveStopsToDB("jdbc:postgresql://localhost:5432/transport", "user", "user");
+        SaveStopsToDB saveStopsToDB = new SaveStopsToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
         saveStopsToDB.save(stopMap);
 
         //сохраняем данные о днях в таблицу
-        SaveDaysToDB saveDaysToDB = new SaveDaysToDB("jdbc:postgresql://localhost:5432/transport", "user", "user");
+        SaveDaysToDB saveDaysToDB = new SaveDaysToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
         saveDaysToDB.createDays();
         saveDaysToDB.save();
 
