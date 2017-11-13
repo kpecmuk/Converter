@@ -43,19 +43,19 @@ public class Main {
         tables.create();
 
         //сохраняем данные об остановках в таблицу
-        SaveStopsToDB stopsToDB = new SaveStopsToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
+        SaveStopsToDB stopsToDB = new SaveStopsToDB("jdbc:postgresql://localhost:5432/transport", "user", "user");
         stopsToDB.save(stopMap);
 
         //сохраняем данные о днях в таблицу
-        SaveDaysToDB daysToDB = new SaveDaysToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
+        SaveDaysToDB daysToDB = new SaveDaysToDB("jdbc:postgresql://localhost:5432/transport", "user", "user");
         daysToDB.save();
 
         //
-        SaveRoutesToDB routesToDB = new SaveRoutesToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
+        SaveRoutesToDB routesToDB = new SaveRoutesToDB("jdbc:postgresql://localhost:5432/transport", "user", "user");
         routesToDB.save();
 
         //сохранение времени
-        SaveTimeToDB saveTimeToDB = new SaveTimeToDB("jdbc:postgresql://localhost:5432/transport", "postgres", "retry");
+        SaveTimeToDB saveTimeToDB = new SaveTimeToDB("jdbc:postgresql://localhost:5432/transport", "user", "user");
         saveTimeToDB.save(timing42);
     }
 }
