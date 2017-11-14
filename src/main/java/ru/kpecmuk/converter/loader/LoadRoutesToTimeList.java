@@ -14,13 +14,13 @@ import java.util.Objects;
  * @since 09.11.2017
  */
 
-public class LoadTime extends Load {
-    private static final Logger log = LoggerFactory.getLogger(LoadTime.class);
+public class LoadRoutesToTimeList extends Load {
+    private static final Logger log = LoggerFactory.getLogger(LoadRoutesToTimeList.class);
 
     private TimesList timesList;
     private Utils utils;
 
-    public LoadTime(TimesList timesList, String fileName, Utils utils) throws IOException {
+    public LoadRoutesToTimeList(TimesList timesList, String fileName, Utils utils) throws IOException {
         super(fileName);
         this.timesList = timesList;
         this.utils = utils;

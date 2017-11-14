@@ -12,11 +12,11 @@ import java.io.IOException;
  * @since 09.11.2017
  */
 
-public class LoadStops extends Load {
-    private static final Logger log = LoggerFactory.getLogger(LoadStops.class);
+public class LoadStopsToStopMap extends Load {
+    private static final Logger log = LoggerFactory.getLogger(LoadStopsToStopMap.class);
     private StopMap stopMap;
 
-    public LoadStops(String fileName, StopMap stopMap) {
+    public LoadStopsToStopMap(String fileName, StopMap stopMap) {
         super(fileName);
         this.stopMap = stopMap;
     }

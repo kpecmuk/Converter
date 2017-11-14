@@ -1,3 +1,5 @@
+DROP TABLE time, routes, stops, days;
+
 CREATE TABLE days
 (
   id    VARCHAR(7)   NOT NULL PRIMARY KEY,
@@ -26,8 +28,9 @@ CREATE TABLE time
 );
 
 SELECT
-  hour,
-  minute
+  time.hour,
+  time.minute,
+  stops.title
 FROM time
-WHERE stop = '1a' AND hour = 7
-
+  RIGHT OUTER JOIN stops ON time.stop = stops.id
+WHERE stop = '1a' AND hour = 6
