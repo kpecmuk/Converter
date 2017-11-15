@@ -1,4 +1,4 @@
-DROP TABLE time, routes, stops, days;
+DROP TABLE schedule, routes, stops, days;
 
 CREATE TABLE days
 (
@@ -18,19 +18,22 @@ CREATE TABLE routes
   title VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE time
+CREATE TABLE schedule
 (
-  hour   SMALLINT,
-  minute SMALLINT,
-  route  VARCHAR(10) REFERENCES routes (id),
-  stop   VARCHAR(10) REFERENCES stops (id),
-  days   VARCHAR(7) REFERENCES days (id)
+  time  TIME,
+  route VARCHAR(10) REFERENCES routes (id),
+  stop  VARCHAR(10) REFERENCES stops (id),
+  days  VARCHAR(7) REFERENCES days (id)
 );
 
 SELECT
-  time.hour,
-  time.minute,
-  stops.title
-FROM time
-  RIGHT OUTER JOIN stops ON time.stop = stops.id
-WHERE stop = '1a' AND hour = 6
+  schedule.time,
+  stops.title,
+  routes.title,
+  days.title
+FROM schedule
+  JOIN stops ON schedule.stop = stops.id
+  JOIN routes ON schedule.route = routes.id
+  JOIN days ON schedule.days = days.id
+WHERE stop = '1a' AND time >= '6:00' AND time <= '6:30'
+ORDER BY time;

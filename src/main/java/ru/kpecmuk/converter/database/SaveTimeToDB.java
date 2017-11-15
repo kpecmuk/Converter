@@ -30,8 +30,8 @@ public class SaveTimeToDB extends Database {
 
             Statement stmt = con.createStatement();
             for (Time time : timesList.getTimeList()) {
-                String sql = "INSERT INTO time (hour, minute, route, stop, days) " +
-                        "VALUES ('" + time.getHour() + "', '" + time.getMinute() +
+                String sql = "INSERT INTO schedule (time, route, stop, days) " +
+                        "VALUES ('" + time.getHour() + ":" + time.getMinute() + "," +
                         "', '" + time.getBusNumber() + "', '" + time.getBusStopID() + "', '" + time.getDays() + "');";
                 stmt.executeUpdate(sql);
             }
@@ -43,6 +43,6 @@ public class SaveTimeToDB extends Database {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        log.info("TIMES created successfully");
+        log.info("SCHEDULE created successfully");
     }
 }

@@ -37,20 +37,19 @@ public class CreateTables extends Database {
 
             sql = "CREATE TABLE IF NOT EXISTS stops (" +
                     "id VARCHAR(10) NOT NULL PRIMARY KEY, " +
-                    "title VARCHAR(50) NOT NULL);";
+                    "title VARCHAR(50) NOT NULL)";
             stmt.executeUpdate(sql);
 
             sql = "CREATE TABLE IF NOT EXISTS days (" +
                     "id VARCHAR(7) NOT NULL PRIMARY KEY, " +
-                    "title VARCHAR(100) NOT NULL);";
+                    "title VARCHAR(100) NOT NULL)";
             stmt.executeUpdate(sql);
 
-            sql = "CREATE TABLE IF NOT EXISTS time (" +
-                    "hour SMALLINT, " +
-                    "minute  SMALLINT, " +
-                    "route VARCHAR(10) REFERENCES routes(id), " +
-                    "stop VARCHAR(10) REFERENCES stops(id), " +
-                    "days VARCHAR(7) REFERENCES days(id));";
+            sql = "CREATE TABLE IF NOT EXISTS schedule (" +
+                    "time TIME, " +
+                    "route VARCHAR(10) REFERENCES routes(id) ON DELETE CASCADE, " +
+                    "stop VARCHAR(10) REFERENCES stops(id) ON DELETE CASCADE, " +
+                    "days VARCHAR(7) REFERENCES days(id) ON DELETE CASCADE)";
             stmt.executeUpdate(sql);
 
             stmt.close();
