@@ -23,6 +23,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Utils utils = new Utils();
 
+        StopMap stopMap = new StopMap();
+        LoadStopsToStopMap stops = new LoadStopsToStopMap(PATH + "Stops.txt", stopMap);
+        stops.load();
+
         TimesList timing42 = new TimesList();
         LoadRoutesToTimeList route42w = new LoadRoutesToTimeList(timing42, PATH + "Route42work.txt", utils);
         route42w.load();
@@ -35,18 +39,15 @@ public class Main {
         LoadRoutesToTimeList route6h = new LoadRoutesToTimeList(timing6, PATH + "Route06holy.txt", utils);
         route6h.load();
 
+        TimesList timing1 = new TimesList();
+        LoadRoutesToTimeList route1w = new LoadRoutesToTimeList(timing1, PATH + "Route01work.txt", utils);
+        route1w.load();
+        LoadRoutesToTimeList route1h = new LoadRoutesToTimeList(timing1, PATH + "Route01holy.txt", utils);
+        route1h.load();
 
-        StopMap stopMap = new StopMap();
-        LoadStopsToStopMap stops = new LoadStopsToStopMap(PATH + "Stops.txt", stopMap);
-        stops.load();
 
-
-        timing42.getTimeList().forEach(time ->
-                System.out.println(time.getTime()
-                        + " - " + stopMap.getStopMap().get(time.getBusStopID()).getTitle()));
-
-        System.err.close();
-        System.setErr(System.out);
+//        System.err.close();
+//        System.setErr(System.out);
 
         //Создаём таблицы
         CreateTables tables = new CreateTables("jdbc:postgresql://localhost:5432/transport", "user", "user");
@@ -68,5 +69,6 @@ public class Main {
         SaveTimeToDB saveTimeToDB = new SaveTimeToDB("jdbc:postgresql://localhost:5432/transport", "user", "user");
         saveTimeToDB.save(timing42);
         saveTimeToDB.save(timing6);
+        saveTimeToDB.save(timing1);
     }
 }
