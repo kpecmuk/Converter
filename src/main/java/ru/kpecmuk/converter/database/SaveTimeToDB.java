@@ -2,8 +2,8 @@ package ru.kpecmuk.converter.database;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpecmuk.converter.timing.CommonTimesList;
 import ru.kpecmuk.converter.timing.Time;
-import ru.kpecmuk.converter.timing.TimesList;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +21,7 @@ public class SaveTimeToDB extends Database {
         super(url, user, password);
     }
 
-    public void save(TimesList timesList) {
+    public void save(CommonTimesList commonTimesList) {
         try {
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(url, user, password);
@@ -29,7 +29,7 @@ public class SaveTimeToDB extends Database {
             log.info("Opened database successfully");
 
             Statement stmt = con.createStatement();
-            for (Time time : timesList.getTimeList()) {
+            for (Time time : commonTimesList.getTimeList()) {
                 String sql = "INSERT INTO schedule (time, route, stop, days) " +
                         "VALUES ('" + time.getHour() + ":" + time.getMinute() + "," +
                         "', '" + time.getBusNumber() + "', '" + time.getBusStopID() + "', '" + time.getDays() + "');";

@@ -6,7 +6,8 @@ import ru.kpecmuk.converter.database.*;
 import ru.kpecmuk.converter.loader.LoadRoutesToTimeList;
 import ru.kpecmuk.converter.loader.LoadStopsToStopMap;
 import ru.kpecmuk.converter.stops.StopMap;
-import ru.kpecmuk.converter.timing.TimesList;
+import ru.kpecmuk.converter.timing.AllRoutesTimeList;
+import ru.kpecmuk.converter.timing.CommonTimesList;
 import ru.kpecmuk.converter.utils.Utils;
 
 import java.io.IOException;
@@ -27,27 +28,34 @@ public class Main {
         LoadStopsToStopMap stops = new LoadStopsToStopMap(PATH + "Stops.txt", stopMap);
         stops.load();
 
-        TimesList timing42 = new TimesList();
+        AllRoutesTimeList allRoutesTimeList = new AllRoutesTimeList();
+
+        CommonTimesList timing42 = new CommonTimesList();
         LoadRoutesToTimeList route42w = new LoadRoutesToTimeList(timing42, PATH + "Route42work.txt", utils);
-        route42w.load();
         LoadRoutesToTimeList route42h = new LoadRoutesToTimeList(timing42, PATH + "Route42holy.txt", utils);
-        route42h.load();
 
-        TimesList timing6 = new TimesList();
+
+        CommonTimesList timing6 = new CommonTimesList();
         LoadRoutesToTimeList route6w = new LoadRoutesToTimeList(timing6, PATH + "Route06work.txt", utils);
-        route6w.load();
         LoadRoutesToTimeList route6h = new LoadRoutesToTimeList(timing6, PATH + "Route06holy.txt", utils);
-        route6h.load();
 
-        TimesList timing1 = new TimesList();
+        CommonTimesList timing1 = new CommonTimesList();
         LoadRoutesToTimeList route1w = new LoadRoutesToTimeList(timing1, PATH + "Route01work.txt", utils);
-        route1w.load();
         LoadRoutesToTimeList route1h = new LoadRoutesToTimeList(timing1, PATH + "Route01holy.txt", utils);
-        route1h.load();
 
+        CommonTimesList timing8 = new CommonTimesList();
+        LoadRoutesToTimeList route8w = new LoadRoutesToTimeList(timing8, PATH + "Route08work.txt", utils);
+//        route8w.load();
+        LoadRoutesToTimeList route8h = new LoadRoutesToTimeList(timing8, PATH + "Route08holy.txt", utils);
+//        route8h.load();
 
-//        System.err.close();
-//        System.setErr(System.out);
+//        allRoutesTimeList.getAllRoutesTimeList().add(timing1);
+//        allRoutesTimeList.getAllRoutesTimeList().add(timing6);
+//        allRoutesTimeList.getAllRoutesTimeList().add(timing8);
+//        allRoutesTimeList.getAllRoutesTimeList().add(timing42);
+
+        System.err.close();
+        System.setErr(System.out);
 
         //Создаём таблицы
         CreateTables tables = new CreateTables("jdbc:postgresql://localhost:5432/transport", "user", "user");
@@ -67,6 +75,7 @@ public class Main {
 
         //сохранение времени
         SaveTimeToDB saveTimeToDB = new SaveTimeToDB("jdbc:postgresql://localhost:5432/transport", "user", "user");
+        //TODO: общий список времени, состоящий из отдельных кусков, каждого маршрута
         saveTimeToDB.save(timing42);
         saveTimeToDB.save(timing6);
         saveTimeToDB.save(timing1);

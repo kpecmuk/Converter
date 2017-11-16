@@ -11,8 +11,8 @@ import java.util.List;
  * @since 04.11.2017
  */
 
-public class TimesList {
-    private static final Logger log = LoggerFactory.getLogger(TimesList.class);
+public class CommonTimesList {
+    private static final Logger log = LoggerFactory.getLogger(CommonTimesList.class);
     private final List<Time> timeList = new ArrayList<>();
 
     public List<Time> getTimeList() {

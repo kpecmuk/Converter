@@ -37,5 +37,5 @@ FROM schedule
   JOIN days ON schedule.days = days.id
 WHERE stop = '41b' AND time >= '12:00' AND time <= '12:40' AND days = '12345'
 ORDER BY time
-FETCH FIRST 2 ROW ONLY;
+FETCH FIRST 5 ROW ONLY;
 
