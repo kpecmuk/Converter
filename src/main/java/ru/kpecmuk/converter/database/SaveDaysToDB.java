@@ -31,12 +31,8 @@ public class SaveDaysToDB extends Database {
         this.days.put("12345", "Пн - Пт");
         this.days.put("67", "Сб - Вс");
         this.days.put("8", "Праздник");
-    }
 
-    /**
-     * Сохранение карты дней недели в таблицу days
-     */
-    public final void save() {
+        //  Сохранение карты дней недели в таблицу days
         try {
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(url, user, password);

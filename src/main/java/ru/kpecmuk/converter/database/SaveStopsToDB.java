@@ -18,11 +18,9 @@ import java.util.Map;
 public class SaveStopsToDB extends Database {
     private static final Logger log = LoggerFactory.getLogger(SaveStopsToDB.class);
 
-    public SaveStopsToDB(String url, String user, String password) {
+    public SaveStopsToDB(String url, String user, String password, StopMap map) {
         super(url, user, password);
-    }
 
-    public final void save(StopMap map) {
         try {
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(url, user, password);
@@ -30,7 +28,7 @@ public class SaveStopsToDB extends Database {
             log.info("Opened database successfully");
 
             Statement stmt = con.createStatement();
-            for (Map.Entry<String, Stop> pair : map.getStopMap().entrySet()) {
+            for (Map.Entry<String, Stop> pair : map.get().entrySet()) {
                 String sql = "INSERT INTO stops (id, title) VALUES ('" + pair.getValue().getId() +
                         "', '" + pair.getValue().getTitle() + "');";
                 stmt.executeUpdate(sql);

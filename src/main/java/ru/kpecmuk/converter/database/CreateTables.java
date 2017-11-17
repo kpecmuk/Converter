@@ -20,9 +20,7 @@ public class CreateTables extends Database {
 
     public CreateTables(String url, String user, String password) {
         super(url, user, password);
-    }
 
-    public void create() {
         try {
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(url, user, password);

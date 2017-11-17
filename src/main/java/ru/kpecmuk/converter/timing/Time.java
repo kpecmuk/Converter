@@ -24,22 +24,6 @@ public class Time {
         this.days = days;
     }
 
-    /**
-     * @return время в формате 00:00
-     */
-    public String getTime() {
-        String result = "";
-
-        if (hour < 10)
-            result = "0";
-        result += hour + ":";
-        if (minute < 10)
-            result += "0";
-        result += minute;
-
-        return result;
-    }
-
     public String getBusNumber() {
         return this.busNumber;
     }

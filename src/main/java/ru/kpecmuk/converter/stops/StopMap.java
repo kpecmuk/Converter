@@ -2,7 +2,9 @@ package ru.kpecmuk.converter.stops;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpecmuk.converter.loader.LoadStopsToStopMap;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +20,11 @@ public class StopMap {
 
     private final Map<String, Stop> stopMap = new HashMap<>();
 
-    public Map<String, Stop> getStopMap() {
+    public StopMap(String fileName) throws IOException {
+        new LoadStopsToStopMap(fileName, this.stopMap);
+    }
+
+    public Map<String, Stop> get() {
         return this.stopMap;
     }
 }

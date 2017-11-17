@@ -3,9 +3,9 @@ package ru.kpecmuk.converter.loader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kpecmuk.converter.stops.Stop;
-import ru.kpecmuk.converter.stops.StopMap;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @author kpecmuk
@@ -14,20 +14,16 @@ import java.io.IOException;
 
 public class LoadStopsToStopMap extends Load {
     private static final Logger log = LoggerFactory.getLogger(LoadStopsToStopMap.class);
-    private StopMap stopMap;
 
-    public LoadStopsToStopMap(String fileName, StopMap stopMap) {
+    public LoadStopsToStopMap(String fileName, Map<String, Stop> stopMap) throws IOException {
         super(fileName);
-        this.stopMap = stopMap;
-    }
 
-    public final void load() throws IOException {
         openFile();
         String title, id;
 
         while ((title = fin.readLine()) != null) {
             id = fin.readLine();
-            stopMap.getStopMap().put(id, new Stop(id, title));
+            stopMap.put(id, new Stop(id, title));
         }
         closeFile();
     }
