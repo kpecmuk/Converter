@@ -9,33 +9,34 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
+import static ru.kpecmuk.converter.Main.*;
+
 /**
  * @author kpecmuk
  * @since 12.11.2017
  */
 
-public class SaveDaysToDB extends Database {
+public class SaveDaysToDB implements Action {
     private static final Logger log = LoggerFactory.getLogger(SaveDaysToDB.class);
 
-    private Map<String, String> days = new HashMap<>();
+    private void saveDays() {
 
-    public SaveDaysToDB(String url, String user, String password) {
-        super(url, user, password);
-        this.days.put("1", "Понедельник");
-        this.days.put("2", "Вторник");
-        this.days.put("3", "Среда");
-        this.days.put("4", "Четверг");
-        this.days.put("5", "Пятница");
-        this.days.put("6", "Суббота");
-        this.days.put("7", "Воскресенье");
-        this.days.put("12345", "Пн - Пт");
-        this.days.put("67", "Сб - Вс");
-        this.days.put("8", "Праздник");
+        Map<String, String> days = new HashMap<>();
+        days.put("1", "Понедельник");
+        days.put("2", "Вторник");
+        days.put("3", "Среда");
+        days.put("4", "Четверг");
+        days.put("5", "Пятница");
+        days.put("6", "Суббота");
+        days.put("7", "Воскресенье");
+        days.put("12345", "Пн - Пт");
+        days.put("67", "Сб - Вс");
+        days.put("8", "Праздник");
 
         //  Сохранение карты дней недели в таблицу days
         try {
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection(url, user, password);
+            Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
             con.setAutoCommit(false);
             log.info("Opened database successfully");
 
@@ -54,5 +55,10 @@ public class SaveDaysToDB extends Database {
             System.exit(0);
         }
         log.info("DAYS created successfully");
+    }
+
+    @Override
+    public void execute() {
+        saveDays();
     }
 }

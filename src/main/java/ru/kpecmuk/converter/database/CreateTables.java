@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
+import static ru.kpecmuk.converter.Main.*;
+
 /**
  * executeQuery - SELECT
  * executeUpdate - INSERT, UPDATE, DELETE, CREATE TABLE и DROP TABLE
@@ -15,15 +17,13 @@ import java.sql.Statement;
  * @since 11.11.2017
  */
 
-public class CreateTables extends Database {
+public class CreateTables implements Action {
     private static final Logger log = LoggerFactory.getLogger(CreateTables.class);
 
-    public CreateTables(String url, String user, String password) {
-        super(url, user, password);
-
+    private void createTables() {
         try {
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection(url, user, password);
+            Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
             con.setAutoCommit(false);
             log.info("Opened database successfully");
 
@@ -58,5 +58,10 @@ public class CreateTables extends Database {
             System.exit(0);
         }
         log.info("Tables: routes, stops, days, time created successfully");
+    }
+
+    @Override
+    public void execute() {
+        createTables();
     }
 }
