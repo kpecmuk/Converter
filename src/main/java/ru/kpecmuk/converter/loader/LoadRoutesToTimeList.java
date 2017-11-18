@@ -47,33 +47,4 @@ public class LoadRoutesToTimeList extends Load {
         }
         closeFile();
     }
-
-//    public final void load() throws IOException {
-//        openFile();
-//        String line, days = "1234567", busNumber = null, busStopId = null;
-//
-//        while ((line = fin.readLine()) != null) {
-//            if (Objects.equals(line, "days")) {
-//                days = fin.readLine();
-//                continue;
-//            }
-//            if (Objects.equals(line, "bus")) {
-//                busNumber = fin.readLine();
-//                continue;
-//            }
-//            if (Objects.equals(line, "stop")) {
-//                busStopId = fin.readLine();
-//                continue;
-//            }
-//            line = utils.lineFilter(line);
-//
-//            int hour = utils.convertToInt(line, 0);
-//
-//            for (int i = 2; i < line.length() - 1; i = i + 2) {
-//                int minute = utils.convertToInt(line, i);
-//                routeTimeList.get().add(new Time(hour, minute, busNumber, busStopId, days));
-//            }
-//        }
-//        closeFile();
-//    }
 }

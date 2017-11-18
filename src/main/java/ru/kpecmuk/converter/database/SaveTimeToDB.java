@@ -12,7 +12,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static ru.kpecmuk.converter.Main.*;
+import static ru.kpecmuk.converter.Main.PATH;
+import static ru.kpecmuk.converter.database.Database.*;
 
 /**
  * @author kpecmuk

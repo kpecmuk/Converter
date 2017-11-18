@@ -12,14 +12,13 @@ import java.io.IOException;
  */
 
 public class Main {
-    public static final String PATH = ("src\\main\\resources\\");
     private static final Logger log = LoggerFactory.getLogger(Main.class);
-    public static String URL = "jdbc:postgresql://localhost:5432/transport";
-    public static String USER = "user";
-    public static String PASSWORD = "user";
+
+    public static final String PATH = ("src\\main\\resources\\");
+    public static final String STOPS_FILE_NAME = PATH + "Stops.txt";
 
     public static void main(String[] args) throws IOException {
-
+        // Подключаю интерфейс Action
         Database db = new Database();
 
         //Создаём таблицы в БД

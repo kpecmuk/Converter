@@ -12,8 +12,6 @@ public class Stop {
     private static final Logger log = LoggerFactory.getLogger(Stop.class);
     private String id;
     private String title;
-//    private float lat;
-//    private float lng;
 
     public Stop(String id, String title) {
         this.id = id;

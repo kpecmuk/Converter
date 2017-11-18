@@ -11,8 +11,8 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.Map;
 
-import static com.sun.tools.javac.code.Lint.LintCategory.PATH;
-import static ru.kpecmuk.converter.Main.*;
+import static ru.kpecmuk.converter.Main.STOPS_FILE_NAME;
+import static ru.kpecmuk.converter.database.Database.*;
 
 /**
  * @author kpecmuk
@@ -49,6 +49,6 @@ public class SaveStopsToDB implements Action {
 
     @Override
     public void execute() throws IOException {
-        saveStopsToDB(new StopMap(PATH + "Stops.txt"));
+        saveStopsToDB(new StopMap(STOPS_FILE_NAME));
     }
 }

@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-import static ru.kpecmuk.converter.Main.*;
+import static ru.kpecmuk.converter.database.Database.*;
 
 /**
  * @author kpecmuk

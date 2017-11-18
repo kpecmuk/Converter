@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-import static ru.kpecmuk.converter.Main.*;
+import static ru.kpecmuk.converter.database.Database.*;
 
 /**
  * executeQuery - SELECT
