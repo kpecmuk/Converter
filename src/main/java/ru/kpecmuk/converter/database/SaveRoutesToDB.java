@@ -9,17 +9,16 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-import static ru.kpecmuk.converter.database.Database.*;
-
 /**
  * @author kpecmuk
  * @since 13.11.2017
  */
 
-public class SaveRoutesToDB implements Action {
+public class SaveRoutesToDB extends Database implements Action {
     private static final Logger log = LoggerFactory.getLogger(SaveRoutesToDB.class);
 
-    private void saveRoutes() {
+    @Override
+    public void execute() {
         Map<String, String> map = new HashMap<>();
 
         map.put("1a-b", "Щетинина-Лоста");
@@ -43,7 +42,7 @@ public class SaveRoutesToDB implements Action {
 
         try {
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection con = DriverManager.getConnection(getHost(), getLogin(), getPassword());
             con.setAutoCommit(false);
             log.info("Opened database successfully");
 
@@ -62,10 +61,5 @@ public class SaveRoutesToDB implements Action {
             System.exit(0);
         }
         log.info("ROUTES created successfully");
-    }
-
-    @Override
-    public void execute() {
-        saveRoutes();
     }
 }

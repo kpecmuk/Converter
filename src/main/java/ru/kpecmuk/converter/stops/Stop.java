@@ -4,6 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Место остановки автобуса
+ * ID идентификатор
+ * TITLE название
+ *
  * @author kpecmuk
  * @since 05.11.2017
  */

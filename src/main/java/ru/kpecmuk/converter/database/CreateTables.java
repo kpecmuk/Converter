@@ -7,8 +7,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-import static ru.kpecmuk.converter.database.Database.*;
-
 /**
  * executeQuery - SELECT
  * executeUpdate - INSERT, UPDATE, DELETE, CREATE TABLE и DROP TABLE
@@ -17,13 +15,13 @@ import static ru.kpecmuk.converter.database.Database.*;
  * @since 11.11.2017
  */
 
-public class CreateTables implements Action {
+public class CreateTables extends Database implements Action {
     private static final Logger log = LoggerFactory.getLogger(CreateTables.class);
 
     private void createTables() {
         try {
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection con = DriverManager.getConnection(getHost(), getLogin(), getPassword());
             con.setAutoCommit(false);
             log.info("Opened database successfully");
 

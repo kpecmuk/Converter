@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * График движения одного маршрута
+ *
  * @author kpecmuk
  * @since 04.11.2017
  */

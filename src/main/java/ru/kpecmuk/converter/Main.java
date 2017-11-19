@@ -18,22 +18,22 @@ public class Main {
     public static final String STOPS_FILE_NAME = PATH + "Stops.txt";
 
     public static void main(String[] args) throws IOException {
-        // Подключаю интерфейс Action
-        Database db = new Database();
+        // Подключаем интерфейс Action
+        Run run = new Run();
 
         //Создаём таблицы в БД
-        db.action(new CreateTables());
+        run.action(new CreateTables());
 
         //загружаем файл и сохраняем данные об остановках в таблицу
-        db.action(new SaveStopsToDB());
+        run.action(new SaveStopsToDB());
 
         //сохраняем данные о днях в таблицу
-        db.action(new SaveDaysToDB());
+        run.action(new SaveDaysToDB());
 
         // сохраняем данные о маршрутах
-        db.action(new SaveRoutesToDB());
+        run.action(new SaveRoutesToDB());
 
         //сохранение времени движения
-        db.action(new SaveTimeToDB());
+        run.action(new SaveTimeToDB());
     }
 }

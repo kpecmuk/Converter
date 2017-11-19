@@ -9,19 +9,18 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-import static ru.kpecmuk.converter.database.Database.*;
-
 /**
  * @author kpecmuk
  * @since 12.11.2017
  */
 
-public class SaveDaysToDB implements Action {
+public class SaveDaysToDB extends Database implements Action {
     private static final Logger log = LoggerFactory.getLogger(SaveDaysToDB.class);
 
-    private void saveDays() {
-
+    @Override
+    public void execute() {
         Map<String, String> days = new HashMap<>();
+
         days.put("1", "Понедельник");
         days.put("2", "Вторник");
         days.put("3", "Среда");
@@ -36,7 +35,7 @@ public class SaveDaysToDB implements Action {
         //  Сохранение карты дней недели в таблицу days
         try {
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection con = DriverManager.getConnection(getHost(), getLogin(), getPassword());
             con.setAutoCommit(false);
             log.info("Opened database successfully");
 
@@ -55,10 +54,5 @@ public class SaveDaysToDB implements Action {
             System.exit(0);
         }
         log.info("DAYS created successfully");
-    }
-
-    @Override
-    public void execute() {
-        saveDays();
     }
 }

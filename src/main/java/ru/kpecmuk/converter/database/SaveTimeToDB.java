@@ -13,26 +13,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import static ru.kpecmuk.converter.Main.PATH;
-import static ru.kpecmuk.converter.database.Database.*;
 
 /**
  * @author kpecmuk
  * @since 12.11.2017
  */
 
-public class SaveTimeToDB implements Action {
+public class SaveTimeToDB extends Database implements Action {
     private static final Logger log = LoggerFactory.getLogger(SaveTimeToDB.class);
 
     private void saveTimeToDB(AllRoutesTimeList allRoutesTimeList) {
         try {
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection con = DriverManager.getConnection(getHost(), getLogin(), getPassword());
             con.setAutoCommit(false);
             log.info("Opened database successfully");
 
             Statement stmt = con.createStatement();
 
-            for (RouteTimeList routeTimeList : allRoutesTimeList.get()) {
+            for (RouteTimeList routeTimeList : allRoutesTimeList.get())
                 routeTimeList.get().forEach(time -> {
                     try {
                         stmt.executeUpdate("INSERT INTO schedule (time, route, stop, days) " +
@@ -42,7 +41,6 @@ public class SaveTimeToDB implements Action {
                         e.printStackTrace();
                     }
                 });
-            }
 
             stmt.close();
             con.commit();
@@ -62,14 +60,14 @@ public class SaveTimeToDB implements Action {
         Utils utils = new Utils();
 
         AllRoutesTimeList allRoutesTimeList = new AllRoutesTimeList();
-        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route42work.txt", utils));
-        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route42holy.txt", utils));
-        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route06work.txt", utils));
-        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route06holy.txt", utils));
         allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route01work.txt", utils));
         allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route01holy.txt", utils));
+        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route06work.txt", utils));
+        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route06holy.txt", utils));
         allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route08work.txt", utils));
         allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route08holy.txt", utils));
+        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route42work.txt", utils));
+        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route42holy.txt", utils));
 
         saveTimeToDB(allRoutesTimeList);
     }
