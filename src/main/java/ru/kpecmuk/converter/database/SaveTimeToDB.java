@@ -61,13 +61,13 @@ public class SaveTimeToDB extends Database implements Action {
 
         AllRoutesTimeList allRoutesTimeList = new AllRoutesTimeList();
         allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route01work.txt", utils));
-        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route01holy.txt", utils));
+//        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route01holy.txt", utils));
         allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route06work.txt", utils));
-        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route06holy.txt", utils));
+//        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route06holy.txt", utils));
         allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route08work.txt", utils));
-        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route08holy.txt", utils));
+//        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route08holy.txt", utils));
         allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route42work.txt", utils));
-        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route42holy.txt", utils));
+//        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route42holy.txt", utils));
 
         saveTimeToDB(allRoutesTimeList);
     }

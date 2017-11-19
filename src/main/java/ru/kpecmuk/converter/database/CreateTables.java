@@ -43,9 +43,9 @@ public class CreateTables extends Database implements Action {
 
             sql = "CREATE TABLE IF NOT EXISTS schedule (" +
                     "time TIME, " +
-                    "route VARCHAR(10) REFERENCES routes(id) ON DELETE CASCADE, " +
-                    "stop VARCHAR(10) REFERENCES stops(id) ON DELETE CASCADE, " +
-                    "days VARCHAR(7) REFERENCES days(id) ON DELETE CASCADE)";
+                    "route VARCHAR(10) CONSTRAINT schedule_route_fk REFERENCES routes(id) ON DELETE CASCADE, " +
+                    "stop VARCHAR(10) CONSTRAINT schedule_stop_fk REFERENCES stops(id) ON DELETE CASCADE, " +
+                    "days VARCHAR(7) CONSTRAINT schedule_days_fk REFERENCES days(id) ON DELETE CASCADE)";
             stmt.executeUpdate(sql);
 
             stmt.close();

@@ -3,8 +3,8 @@ package ru.kpecmuk.converter.database;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -22,18 +22,18 @@ class Database {
     private String password;
 
     Database() {
-        FileInputStream fis;
         Properties property = new Properties();
         String propFileName = "config.properties";
-        try {
-            fis = new FileInputStream(String.valueOf(getClass().getClassLoader().getResourceAsStream(propFileName)));
-            property.load(fis);
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName)) {
+
+            property.load(inputStream);
 
             this.host = property.getProperty("db.host");
             this.login = property.getProperty("db.login");
             this.password = property.getProperty("db.password");
 
-            fis.close();
+            inputStream.close();
+
         } catch (IOException e) {
             log.error("Файл '" + propFileName + "' не найден");
         }
