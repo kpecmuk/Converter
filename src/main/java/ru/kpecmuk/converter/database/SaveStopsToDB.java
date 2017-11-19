@@ -21,6 +21,11 @@ import static ru.kpecmuk.converter.Main.STOPS_FILE_NAME;
 public class SaveStopsToDB extends Database implements Action {
     private static final Logger log = LoggerFactory.getLogger(SaveStopsToDB.class);
 
+    @Override
+    public void execute() throws IOException {
+        saveStopsToDB(new StopMap(STOPS_FILE_NAME));
+    }
+
     private void saveStopsToDB(StopMap map) {
         try {
             Class.forName("org.postgresql.Driver");
@@ -45,8 +50,5 @@ public class SaveStopsToDB extends Database implements Action {
         log.info("STOPS created successfully");
     }
 
-    @Override
-    public void execute() throws IOException {
-        saveStopsToDB(new StopMap(STOPS_FILE_NAME));
-    }
+
 }

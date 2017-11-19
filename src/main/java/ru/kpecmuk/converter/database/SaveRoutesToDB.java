@@ -57,7 +57,7 @@ public class SaveRoutesToDB extends Database implements Action {
             con.commit();
             con.close();
         } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            log.error(String.valueOf(e));
             System.exit(0);
         }
         log.info("ROUTES created successfully");

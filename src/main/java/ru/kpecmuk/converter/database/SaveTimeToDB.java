@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kpecmuk.converter.timing.AllRoutesTimeList;
 import ru.kpecmuk.converter.timing.RouteTimeList;
-import ru.kpecmuk.converter.utils.Utils;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -57,17 +56,16 @@ public class SaveTimeToDB extends Database implements Action {
 
     @Override
     public void execute() throws IOException {
-        Utils utils = new Utils();
 
         AllRoutesTimeList allRoutesTimeList = new AllRoutesTimeList();
-        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route01work.txt", utils));
-//        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route01holy.txt", utils));
-        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route06work.txt", utils));
-//        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route06holy.txt", utils));
-        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route08work.txt", utils));
-//        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route08holy.txt", utils));
-        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route42work.txt", utils));
-//        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route42holy.txt", utils));
+        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route01work.txt"));
+        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route01holy.txt"));
+        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route06work.txt"));
+        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route06holy.txt"));
+        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route08work.txt"));
+        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route08holy.txt"));
+        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route42work.txt"));
+        allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route42holy.txt"));
 
         saveTimeToDB(allRoutesTimeList);
     }
