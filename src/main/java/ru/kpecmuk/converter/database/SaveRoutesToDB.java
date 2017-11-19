@@ -37,6 +37,9 @@ public class SaveRoutesToDB extends Database implements Action {
         map.put("16b-a", "ВПЗ-Дальняя");
         map.put("17a-b", "ВоГУ-6 мкр");
         map.put("17b-a", "6 мкр-ВоГУ");
+        map.put("28a-b", "6 мкр-ВоГУ");
+        map.put("28b-a", "6 мкр-ВоГУ");
+
         map.put("42a-b", "Дальняя-Екимцево");
         map.put("42b-a", "Екимцево-Дальняя");
 

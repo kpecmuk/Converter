@@ -45,7 +45,9 @@ public class CreateTables extends Database implements Action {
                     "time TIME, " +
                     "route VARCHAR(10) CONSTRAINT schedule_route_fk REFERENCES routes(id) ON DELETE CASCADE, " +
                     "stop VARCHAR(10) CONSTRAINT schedule_stop_fk REFERENCES stops(id) ON DELETE CASCADE, " +
-                    "days VARCHAR(7) CONSTRAINT schedule_days_fk REFERENCES days(id) ON DELETE CASCADE)";
+                    "days VARCHAR(7) CONSTRAINT schedule_days_fk REFERENCES days(id) ON DELETE CASCADE," +
+                    "CONSTRAINT schedule_time_route_stop_days_pk " +
+                    "PRIMARY KEY (time, route, stop, days))";
             stmt.executeUpdate(sql);
 
             stmt.close();

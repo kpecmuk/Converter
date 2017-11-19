@@ -35,7 +35,7 @@ FROM schedule
   JOIN stops ON schedule.stop = stops.id
   JOIN routes ON schedule.route = routes.id
   JOIN days ON schedule.days = days.id
-WHERE stop = '41b' AND time >= '12:00' AND time <= '12:40' AND days = '12345'
+WHERE stop = '10a' AND time >= '7:00' AND time <= '7:40' AND days = '12345'
 ORDER BY time
-FETCH FIRST 5 ROW ONLY;
+FETCH FIRST 20 ROW ONLY;
 
