@@ -50,8 +50,8 @@ public class SaveDaysToDB extends Database implements Action {
             con.commit();
             con.close();
         } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
+            log.error(String.valueOf(e));
+            System.exit(1);
         }
         log.info("DAYS created successfully");
     }

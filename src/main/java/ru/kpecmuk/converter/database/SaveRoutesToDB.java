@@ -60,7 +60,7 @@ public class SaveRoutesToDB extends Database implements Action {
             con.close();
         } catch (Exception e) {
             log.error(String.valueOf(e));
-            System.exit(0);
+            System.exit(1);
         }
         log.info("ROUTES created successfully");
     }

@@ -44,12 +44,9 @@ public class SaveTimeToDB extends Database implements Action {
             stmt.close();
             con.commit();
             con.close();
-        } catch (
-                Exception e)
-
-        {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
+        } catch (Exception e) {
+            log.error(String.valueOf(e));
+            System.exit(1);
         }
         log.info("SCHEDULE created successfully");
     }

@@ -22,7 +22,7 @@ public class RouteTimeList {
 
     public RouteTimeList(String fileName) throws IOException {
         Loader loader = new Loader(fileName);
-        loader.LoaderRoutesToTimeList(this.routeTimeList);
+        loader.LoadRoutesToTimeList(this.routeTimeList);
     }
 
     public List<Time> get() {

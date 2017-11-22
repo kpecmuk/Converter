@@ -44,6 +44,6 @@ public class Time {
     }
 
     public String getDays() {
-        return days;
+        return this.days;
     }
 }

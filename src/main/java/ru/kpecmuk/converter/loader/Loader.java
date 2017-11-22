@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public class Loader {
     private static final Logger log = LoggerFactory.getLogger(Loader.class);
-    BufferedReader fin;
+    private BufferedReader fin;
     private String fileName;
     private Utils utils;
 
@@ -27,52 +27,84 @@ public class Loader {
         this.utils = new Utils();
     }
 
-    private void openFile() throws FileNotFoundException {
-        this.fin = new BufferedReader(new FileReader(new File(fileName)));
+    private void openFile() {
+        try {
+            this.fin = new BufferedReader(new FileReader(new File(fileName)));
+        } catch (FileNotFoundException e) {
+            log.error(String.valueOf(e));
+            System.exit(1);
+        }
     }
 
-    private void closeFile() throws IOException {
-        this.fin.close();
+    private void closeFile() {
+        try {
+            this.fin.close();
+        } catch (IOException e) {
+            log.error(String.valueOf(e));
+            System.exit(1);
+        }
     }
 
-    public void LoaderStopsToStopMap(Map<String, Stop> stopMap) throws IOException {
+    /**
+     * Обработка файла с остановками.
+     * Открываем файл, обрабатываем данные, закрываем файл.
+     *
+     * @param stopMap список всех остановочных пунктов
+     */
+    public void LoadStopsToStopMap(Map<String, Stop> stopMap) {
 
         openFile();
         String title, id;
 
-        while ((title = fin.readLine()) != null) {
-            id = fin.readLine();
-            stopMap.put(id, new Stop(id, title));
+        try {
+            while ((title = fin.readLine()) != null) {
+                id = fin.readLine();
+                stopMap.put(id, new Stop(id, title));
+            }
+        } catch (IOException e) {
+            log.error(String.valueOf(e));
+            System.exit(1);
         }
         closeFile();
     }
 
-    public void LoaderRoutesToTimeList(List<Time> routeTimeList) throws IOException {
+    /**
+     * Обработка файлов с маршрутами.
+     * Открываем файл, получаем данные, сохраняем, закрываем файл.
+     *
+     * @param routeTimeList сюда сохраняются полученные данные
+     */
+    public void LoadRoutesToTimeList(List<Time> routeTimeList) {
 
         openFile();
         String line, days = "1234567", busNumber = null, busStopId = null;
 
-        while ((line = fin.readLine()) != null) {
-            if (Objects.equals(line, "days")) {
-                days = fin.readLine();
-                continue;
-            }
-            if (Objects.equals(line, "bus")) {
-                busNumber = fin.readLine();
-                continue;
-            }
-            if (Objects.equals(line, "stop")) {
-                busStopId = fin.readLine();
-                continue;
-            }
-            line = utils.lineFilter(line);
+        try {
+            while ((line = fin.readLine()) != null) {
+                if (Objects.equals(line, "days")) {
+                    days = fin.readLine();
+                    continue;
+                }
+                if (Objects.equals(line, "bus")) {
+                    busNumber = fin.readLine();
+                    continue;
+                }
+                if (Objects.equals(line, "stop")) {
+                    busStopId = fin.readLine();
+                    continue;
+                }
+                line = utils.lineFilter(line);
 
-            int hour = utils.convertToInt(line, 0);
+                int hour = utils.convertToInt(line, 0);
 
-            for (int i = 2; i < line.length() - 1; i = i + 2) {
-                int minute = utils.convertToInt(line, i);
-                routeTimeList.add(new Time(hour, minute, busNumber, busStopId, days));
+                for (int i = 2; i < line.length() - 1; i = i + 2) {
+                    int minute = utils.convertToInt(line, i);
+                    routeTimeList.add(new Time(hour, minute, busNumber, busStopId, days));
+                }
             }
+        } catch (IOException e) {
+            log.error(String.valueOf(e));
+            System.exit(1);
         }
         closeFile();
     }

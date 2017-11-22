@@ -22,7 +22,7 @@ public class StopMap {
 
     public StopMap(String fileName) throws IOException {
         Loader loader = new Loader(fileName);
-        loader.LoaderStopsToStopMap(stopMap);
+        loader.LoadStopsToStopMap(this.stopMap);
     }
 
     public Map<String, Stop> get() {

@@ -26,6 +26,11 @@ public class SaveStopsToDB extends Database implements Action {
         saveStopsToDB(new StopMap(STOPS_FILE_NAME));
     }
 
+    /**
+     * Сохраняем остановки в БД
+     *
+     * @param map список остановок типа StopMap
+     */
     private void saveStopsToDB(StopMap map) {
         try {
             Class.forName("org.postgresql.Driver");
@@ -44,11 +49,9 @@ public class SaveStopsToDB extends Database implements Action {
             con.commit();
             con.close();
         } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
+            log.error(String.valueOf(e));
+            System.exit(1);
         }
         log.info("STOPS created successfully");
     }
-
-
 }
