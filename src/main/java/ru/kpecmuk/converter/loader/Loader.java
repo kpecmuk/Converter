@@ -27,6 +27,9 @@ public class Loader {
         this.utils = new Utils();
     }
 
+    /**
+     * Открытие файла
+     */
     private void openFile() {
         try {
             this.fin = new BufferedReader(new FileReader(new File(fileName)));
@@ -36,6 +39,9 @@ public class Loader {
         }
     }
 
+    /**
+     * Закрытие файла
+     */
     private void closeFile() {
         try {
             this.fin.close();
