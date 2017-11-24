@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import ru.kpecmuk.converter.actions.Process;
 import ru.kpecmuk.converter.database.*;
 
-import java.io.IOException;
-
 /**
  * @author kpecmuk
  * @since 04.11.2017
@@ -18,7 +16,7 @@ public class Main {
     public static final String PATH = ("src\\main\\resources\\");
     public static final String STOPS_FILE_NAME = PATH + "Stops.txt";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // Подключаем интерфейс Action
         Process process = new Process();
 
