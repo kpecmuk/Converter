@@ -57,7 +57,7 @@ public class Loader {
      *
      * @param stopMap список всех остановочных пунктов
      */
-    public void LoadStopsToStopMap(Map<String, Stop> stopMap) {
+    public void loadStopsToStopMap(Map<String, Stop> stopMap) {
 
         openFile();
         String title, id;
@@ -80,7 +80,7 @@ public class Loader {
      *
      * @param routeTimeList сюда сохраняются полученные данные
      */
-    public void LoadRoutesToTimeList(List<Time> routeTimeList) {
+    public void loadRoutesToTimeList(List<Time> routeTimeList) {
 
         openFile();
         String line, days = "1234567", busNumber = null, busStopId = null;
