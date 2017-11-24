@@ -2,8 +2,8 @@ package ru.kpecmuk.converter.stops;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpecmuk.converter.actions.Process;
 import ru.kpecmuk.converter.loader.LoadStopsToStopMap;
-import ru.kpecmuk.converter.loader.Process;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +22,7 @@ public class StopMap {
 
     public StopMap(String fileName) {
         Process process = new Process();
-        process.setProcessing(new LoadStopsToStopMap(fileName, this.stopMap));
+        process.setProcess(new LoadStopsToStopMap(fileName, this.stopMap));
         process.execute();
     }
 

@@ -2,6 +2,7 @@ package ru.kpecmuk.converter.database;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpecmuk.converter.actions.Action;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +19,8 @@ import java.sql.Statement;
 public class CreateTables extends Database implements Action {
     private static final Logger log = LoggerFactory.getLogger(CreateTables.class);
 
-    private void createTables() {
+    @Override
+    public void execute() {
         try {
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(getHost(), getLogin(), getPassword());
@@ -57,10 +59,5 @@ public class CreateTables extends Database implements Action {
             System.exit(1);
         }
         log.info("Tables: routes, stops, days, time created successfully");
-    }
-
-    @Override
-    public void execute() {
-        createTables();
     }
 }

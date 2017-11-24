@@ -2,8 +2,8 @@ package ru.kpecmuk.converter.timing;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpecmuk.converter.actions.Process;
 import ru.kpecmuk.converter.loader.LoadRoutesToTimeList;
-import ru.kpecmuk.converter.loader.Process;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class RouteTimeList {
 
     public RouteTimeList(String fileName) {
         Process process = new Process();
-        process.setProcessing(new LoadRoutesToTimeList(fileName, this.routeTimeList));
+        process.setProcess(new LoadRoutesToTimeList(fileName, this.routeTimeList));
         process.execute();
     }
 

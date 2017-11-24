@@ -1,10 +1,10 @@
-package ru.kpecmuk.converter.database;
+package ru.kpecmuk.converter.actions;
 
 /**
  * @author kpecmuk
  * @since 18.11.2017
  */
-interface Action {
+public interface Action {
 
     void execute();
 }

@@ -1,4 +1,4 @@
-package ru.kpecmuk.converter.loader;
+package ru.kpecmuk.converter.actions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,13 +11,13 @@ import org.slf4j.LoggerFactory;
 public class Process {
     private static final Logger log = LoggerFactory.getLogger(Process.class);
 
-    private Processing processing;
+    private Action action;
 
-    public void setProcessing(Processing processing) {
-        this.processing = processing;
+    public void setProcess(Action processing) {
+        this.action = processing;
     }
 
     public void execute() {
-        processing.loadAndProcess();
+        action.execute();
     }
 }

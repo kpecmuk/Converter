@@ -2,6 +2,7 @@ package ru.kpecmuk.converter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpecmuk.converter.actions.Process;
 import ru.kpecmuk.converter.database.*;
 
 import java.io.IOException;
@@ -19,21 +20,26 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         // Подключаем интерфейс Action
-        Run run = new Run();
+        Process process = new Process();
 
         //Создаём таблицы в БД
-        run.action(new CreateTables());
+        process.setProcess(new CreateTables());
+        process.execute();
 
         //загружаем файл и сохраняем данные об остановках в таблицу
-        run.action(new SaveStopsToDB());
+        process.setProcess(new SaveStopsToDB());
+        process.execute();
 
         //сохраняем данные о днях в таблицу
-        run.action(new SaveDaysToDB());
+        process.setProcess(new SaveDaysToDB());
+        process.execute();
 
         // сохраняем данные о маршрутах
-        run.action(new SaveRoutesToDB());
+        process.setProcess(new SaveRoutesToDB());
+        process.execute();
 
         //сохранение времени движения
-        run.action(new SaveTimeToDB());
+        process.setProcess(new SaveTimeToDB());
+        process.execute();
     }
 }

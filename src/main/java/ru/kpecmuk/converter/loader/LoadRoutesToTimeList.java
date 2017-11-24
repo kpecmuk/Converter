@@ -2,6 +2,7 @@ package ru.kpecmuk.converter.loader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpecmuk.converter.actions.Action;
 import ru.kpecmuk.converter.timing.Time;
 
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.util.Objects;
  * @since 24.11.2017
  */
 
-public class LoadRoutesToTimeList extends LoadFile implements Processing {
+public class LoadRoutesToTimeList extends LoadFile implements Action {
     private static final Logger log = LoggerFactory.getLogger(LoadRoutesToTimeList.class);
 
     private List<Time> routeTimeList;
@@ -28,7 +29,7 @@ public class LoadRoutesToTimeList extends LoadFile implements Processing {
      * Открываем файл, получаем данные, сохраняем, закрываем файл.
      */
     @Override
-    public final void loadAndProcess() {
+    public final void execute() {
 
         openFile();
         String line, days = "1234567", busNumber = null, busStopId = null;

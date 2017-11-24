@@ -2,6 +2,7 @@ package ru.kpecmuk.converter.loader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpecmuk.converter.actions.Action;
 import ru.kpecmuk.converter.stops.Stop;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.Map;
  * @since 24.11.2017
  */
 
-public class LoadStopsToStopMap extends LoadFile implements Processing {
+public class LoadStopsToStopMap extends LoadFile implements Action {
     private static final Logger log = LoggerFactory.getLogger(LoadStopsToStopMap.class);
 
     private Map<String, Stop> stopMap;
@@ -27,7 +28,7 @@ public class LoadStopsToStopMap extends LoadFile implements Processing {
      * Открываем файл, обрабатываем данные, закрываем файл.
      */
     @Override
-    public final void loadAndProcess() {
+    public final void execute() {
 
         openFile();
         String title, id;
