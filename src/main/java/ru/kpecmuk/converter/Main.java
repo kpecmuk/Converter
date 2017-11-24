@@ -11,10 +11,9 @@ import ru.kpecmuk.converter.database.*;
  */
 
 public class Main {
-    private static final Logger log = LoggerFactory.getLogger(Main.class);
-
     public static final String PATH = ("src\\main\\resources\\");
     public static final String STOPS_FILE_NAME = PATH + "Stops.txt";
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
         // Подключаем интерфейс Action

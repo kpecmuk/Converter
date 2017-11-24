@@ -15,8 +15,8 @@ class LoadFile {
     private static final Logger log = LoggerFactory.getLogger(LoadFile.class);
 
     BufferedReader fin;
-    private String fileName;
     Utils utils;
+    private String fileName;
 
     LoadFile(String fileName) {
         this.fileName = fileName;
