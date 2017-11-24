@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import ru.kpecmuk.converter.stops.Stop;
 import ru.kpecmuk.converter.stops.StopMap;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -22,7 +21,7 @@ public class SaveStopsToDB extends Database implements Action {
     private static final Logger log = LoggerFactory.getLogger(SaveStopsToDB.class);
 
     @Override
-    public void execute() throws IOException {
+    public void execute() {
         saveStopsToDB(new StopMap(STOPS_FILE_NAME));
     }
 

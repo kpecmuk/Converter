@@ -2,9 +2,9 @@ package ru.kpecmuk.converter.timing;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpecmuk.converter.loader.Loader;
+import ru.kpecmuk.converter.loader.LoadRoutesToTimeList;
+import ru.kpecmuk.converter.loader.Process;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +20,10 @@ public class RouteTimeList {
 
     private final List<Time> routeTimeList = new ArrayList<>();
 
-    public RouteTimeList(String fileName) throws IOException {
-        Loader loader = new Loader(fileName);
-        loader.loadRoutesToTimeList(this.routeTimeList);
+    public RouteTimeList(String fileName) {
+        Process process = new Process();
+        process.setProcessing(new LoadRoutesToTimeList(fileName, this.routeTimeList));
+        process.execute();
     }
 
     public List<Time> get() {

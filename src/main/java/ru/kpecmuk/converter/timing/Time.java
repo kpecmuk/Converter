@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 public class Time {
     private static final Logger log = LoggerFactory.getLogger(Time.class);
+
     private int hour;
     private int minute;
     private String busStopID;

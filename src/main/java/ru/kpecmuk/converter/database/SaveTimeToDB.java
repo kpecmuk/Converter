@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import ru.kpecmuk.converter.timing.AllRoutesTimeList;
 import ru.kpecmuk.converter.timing.RouteTimeList;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -52,7 +51,7 @@ public class SaveTimeToDB extends Database implements Action {
     }
 
     @Override
-    public void execute() throws IOException {
+    public void execute() {
 
         AllRoutesTimeList allRoutesTimeList = new AllRoutesTimeList();
         allRoutesTimeList.get().add(new RouteTimeList(PATH + "Route01work.txt"));

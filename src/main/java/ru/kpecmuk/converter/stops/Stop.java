@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 public class Stop {
     private static final Logger log = LoggerFactory.getLogger(Stop.class);
+
     private String id;
     private String title;
 
