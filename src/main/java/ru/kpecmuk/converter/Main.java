@@ -13,6 +13,9 @@ import ru.kpecmuk.converter.database.*;
 public class Main {
     public static final String PATH = ("src\\main\\resources\\");
     public static final String STOPS_FILE_NAME = PATH + "Stops.txt";
+    public static final String DAYS_FILE_NAME = PATH + "Days.txt";
+    public static final String ROUTES_FILE_NAME = PATH + "Routes.txt";
+
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
@@ -24,19 +27,19 @@ public class Main {
         process.execute();
 
         //загружаем файл и сохраняем данные об остановках в таблицу
-        process.setProcess(new SaveStopsToDB());
+        process.setProcess(new StopsToDB());
         process.execute();
 
         //сохраняем данные о днях в таблицу
-        process.setProcess(new SaveDaysToDB());
+        process.setProcess(new DaysToDB());
         process.execute();
 
         // сохраняем данные о маршрутах
-        process.setProcess(new SaveRoutesToDB());
+        process.setProcess(new RoutesToDB());
         process.execute();
 
         //сохранение времени движения
-        process.setProcess(new SaveTimeToDB());
+        process.setProcess(new TimeToDB());
         process.execute();
     }
 }

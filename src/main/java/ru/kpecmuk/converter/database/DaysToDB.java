@@ -3,35 +3,33 @@ package ru.kpecmuk.converter.database;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kpecmuk.converter.actions.Action;
-import ru.kpecmuk.converter.stops.Stop;
-import ru.kpecmuk.converter.stops.StopMap;
+import ru.kpecmuk.converter.data_maps.DataMap;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.Map;
 
-import static ru.kpecmuk.converter.Main.STOPS_FILE_NAME;
+import static ru.kpecmuk.converter.Main.DAYS_FILE_NAME;
 
 /**
  * @author kpecmuk
  * @since 12.11.2017
  */
 
-public class SaveStopsToDB extends Database implements Action {
-    private static final Logger log = LoggerFactory.getLogger(SaveStopsToDB.class);
+public class DaysToDB extends Database implements Action {
+    private static final Logger log = LoggerFactory.getLogger(DaysToDB.class);
 
     @Override
     public void execute() {
-        saveStopsToDB(new StopMap(STOPS_FILE_NAME));
+        saveDaysToDB(new DataMap(DAYS_FILE_NAME));
     }
 
     /**
-     * Сохраняем остановки в БД
-     *
-     * @param map список остановок типа StopMap
+     * @param map HashMap с днями, когда маршрут обслуживается
      */
-    private void saveStopsToDB(StopMap map) {
+    private void saveDaysToDB(DataMap map) {
+        //  Сохранение карты дней недели в таблицу days
         try {
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(getHost(), getLogin(), getPassword());
@@ -39,9 +37,9 @@ public class SaveStopsToDB extends Database implements Action {
             log.info("Opened database successfully");
 
             Statement stmt = con.createStatement();
-            for (Map.Entry<String, Stop> pair : map.get().entrySet()) {
-                String sql = "INSERT INTO stops (id, title) VALUES ('" + pair.getValue().getId() +
-                        "', '" + pair.getValue().getTitle() + "');";
+            for (Map.Entry<String, String> pair : map.get().entrySet()) {
+                String sql = "INSERT INTO days (id, title) VALUES ('" + pair.getKey() +
+                        "', '" + pair.getValue() + "');";
                 stmt.executeUpdate(sql);
             }
 
@@ -52,6 +50,6 @@ public class SaveStopsToDB extends Database implements Action {
             log.error(String.valueOf(e));
             System.exit(1);
         }
-        log.info("STOPS created successfully");
+        log.info("DAYS created successfully");
     }
 }

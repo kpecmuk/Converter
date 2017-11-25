@@ -3,13 +3,15 @@ package ru.kpecmuk.converter.loader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kpecmuk.converter.actions.Action;
-import ru.kpecmuk.converter.timing.Time;
+import ru.kpecmuk.converter.data_maps.Time_data;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
 /**
+ * Обработка days, bus, stop ключей
+ *
  * @author kpecmuk
  * @since 24.11.2017
  */
@@ -17,11 +19,11 @@ import java.util.Objects;
 public class LoadRoutesToTimeList extends LoadFile implements Action {
     private static final Logger log = LoggerFactory.getLogger(LoadRoutesToTimeList.class);
 
-    private List<Time> routeTimeList;
+    private List<Time_data> routeTimeDataList;
 
-    public LoadRoutesToTimeList(String fileName, List<Time> routeTimeList) {
+    public LoadRoutesToTimeList(String fileName, List<Time_data> routeTimeDataList) {
         super(fileName);
-        this.routeTimeList = routeTimeList;
+        this.routeTimeDataList = routeTimeDataList;
     }
 
     /**
@@ -54,7 +56,7 @@ public class LoadRoutesToTimeList extends LoadFile implements Action {
 
                 for (int i = 2; i < line.length() - 1; i = i + 2) {
                     int minute = utils.convertToInt(line, i);
-                    routeTimeList.add(new Time(hour, minute, busNumber, busStopId, days));
+                    routeTimeDataList.add(new Time_data(hour, minute, busNumber, busStopId, days));
                 }
             }
         } catch (IOException e) {

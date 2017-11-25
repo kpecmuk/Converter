@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Шаблон Strategy
+ *
  * @author kpecmuk
  * @since 24.11.2017
  */

@@ -1,4 +1,4 @@
-package ru.kpecmuk.converter.timing;
+package ru.kpecmuk.converter.data_maps;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
  * @since 04.11.2017
  */
 
-public class Time {
-    private static final Logger log = LoggerFactory.getLogger(Time.class);
+public class Time_data {
+    private static final Logger log = LoggerFactory.getLogger(Time_data.class);
 
     private int hour;
     private int minute;
@@ -20,7 +20,7 @@ public class Time {
     private String busNumber;
     private String days;
 
-    public Time(int hour, int minute, String busNumber, String busStopID, String days) {
+    public Time_data(int hour, int minute, String busNumber, String busStopID, String days) {
         this.hour = hour;
         this.minute = minute;
         this.busNumber = busNumber;

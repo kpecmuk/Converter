@@ -18,8 +18,8 @@ import static ru.kpecmuk.converter.Main.PATH;
  * @since 12.11.2017
  */
 
-public class SaveTimeToDB extends Database implements Action {
-    private static final Logger log = LoggerFactory.getLogger(SaveTimeToDB.class);
+public class TimeToDB extends Database implements Action {
+    private static final Logger log = LoggerFactory.getLogger(TimeToDB.class);
 
     private void saveTimeToDB(AllRoutesTimeList allRoutesTimeList) {
         try {
