@@ -51,6 +51,11 @@ public class TimeToDB extends Database implements Action {
         log.info("SCHEDULE created successfully");
     }
 
+    /**
+     * Загружаем файлы маршрутов со временем движения по остановкам.
+     * Для этого создаётся список AllRoutesTimeList, состоящий из
+     * отдельных расписаний каждого маршрута RouteTimeList
+     */
     @Override
     public void execute() {
 

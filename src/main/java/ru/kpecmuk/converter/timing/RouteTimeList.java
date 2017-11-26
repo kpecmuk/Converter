@@ -3,7 +3,6 @@ package ru.kpecmuk.converter.timing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kpecmuk.converter.actions.Process;
-import ru.kpecmuk.converter.data_maps.Time_data;
 import ru.kpecmuk.converter.loader.LoadRoutesToTimeList;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.List;
 public class RouteTimeList {
     private static final Logger log = LoggerFactory.getLogger(RouteTimeList.class);
 
-    private final List<Time_data> routeTimeDataList = new ArrayList<>();
+    private final List<Time> routeTimeDataList = new ArrayList<>();
 
     public RouteTimeList(String fileName) {
         Process process = new Process();
@@ -27,7 +26,7 @@ public class RouteTimeList {
         process.execute();
     }
 
-    public List<Time_data> get() {
+    public List<Time> get() {
         return this.routeTimeDataList;
     }
 }

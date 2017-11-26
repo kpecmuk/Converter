@@ -32,7 +32,7 @@ public class RoutesToDB extends Database implements Action {
     }
 
     /**
-     * Сохраняем названия маршрутов в SQL таблицу
+     * Сохраняем названия маршрутов в SQL таблицу из списка HashMap
      *
      * @param map HashMap с маршрутами
      */

@@ -32,6 +32,8 @@ public class DaysToDB extends Database implements Action {
     }
 
     /**
+     * Сохраняем данные из списка HashMap в таблицу days
+     *
      * @param map HashMap с днями, когда маршрут обслуживается
      */
     private void saveDaysToDB(DataMap map) {

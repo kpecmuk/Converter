@@ -32,7 +32,7 @@ public class StopsToDB extends Database implements Action {
     }
 
     /**
-     * Сохраняем остановки в SQL таблицу
+     * Сохраняем остановки в SQL таблицу из списка HashMap
      *
      * @param map HashMap с остановками
      */
