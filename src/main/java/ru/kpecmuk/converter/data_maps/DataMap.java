@@ -10,6 +10,8 @@ import java.util.Map;
 
 /**
  * Загрузка данных из файлов и сохранение их в HashMap
+ * Раньше это были классы StopMap, RouteMap, DaysMap,
+ * а теперь это общий класс DataMap
  *
  * @author kpecmuk
  * @since 25.11.2017

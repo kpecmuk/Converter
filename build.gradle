@@ -19,5 +19,6 @@ dependencies {
 }
 
 jar {
+
     manifest.attributes "Main-class": "ru.kpecmuk.converter.Main"
 }

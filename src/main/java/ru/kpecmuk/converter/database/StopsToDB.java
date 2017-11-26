@@ -20,6 +20,12 @@ import static ru.kpecmuk.converter.Main.STOPS_FILE_NAME;
 public class StopsToDB extends Database implements Action {
     private static final Logger log = LoggerFactory.getLogger(StopsToDB.class);
 
+    /**
+     * В DataMap происходит загрузка файла c именем STOPS_FILE_NAME
+     * DataMap создаёт список HashMap
+     * Этот список передаётся в saveStopsToDB в качестве параметра и
+     * там полученные данные заносятся в таблицу stops.
+     */
     @Override
     public void execute() {
         saveStopsToDB(new DataMap(STOPS_FILE_NAME));

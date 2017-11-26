@@ -20,6 +20,12 @@ import static ru.kpecmuk.converter.Main.DAYS_FILE_NAME;
 public class DaysToDB extends Database implements Action {
     private static final Logger log = LoggerFactory.getLogger(DaysToDB.class);
 
+    /**
+     * В DataMap происходит загрузка файла c именем DAYS_FILE_NAME
+     * DataMap создаёт список HashMap
+     * Этот список передаётся в saveDaysToDB в качестве параметра и
+     * там полученные данные заносятся в таблицу days.
+     */
     @Override
     public void execute() {
         saveDaysToDB(new DataMap(DAYS_FILE_NAME));

@@ -20,6 +20,12 @@ import static ru.kpecmuk.converter.Main.ROUTES_FILE_NAME;
 public class RoutesToDB extends Database implements Action {
     private static final Logger log = LoggerFactory.getLogger(RoutesToDB.class);
 
+    /**
+     * В DataMap происходит загрузка файла c именем ROUTES_FILE_NAME
+     * DataMap создаёт список HashMap
+     * Этот список передаётся в saveRoutesToDB в качестве параметра и
+     * там полученные данные заносятся в таблицу routes.
+     */
     @Override
     public void execute() {
         saveRoutesToDB(new DataMap(ROUTES_FILE_NAME));

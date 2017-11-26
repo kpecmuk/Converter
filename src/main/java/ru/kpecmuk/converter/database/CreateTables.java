@@ -19,6 +19,11 @@ import java.sql.Statement;
 public class CreateTables extends Database implements Action {
     private static final Logger log = LoggerFactory.getLogger(CreateTables.class);
 
+    /**
+     * Создаём таблицы в базе данных
+     * для будущего хранения в них данных
+     * TODO: сделать загрузку sql файлов для создания таблиц
+     */
     @Override
     public void execute() {
         try {
