@@ -37,7 +37,7 @@ public class LoadDataToHashMap extends LoadFile implements Action {
                 map.put(id, title);
             }
         } catch (IOException e) {
-            log.error(String.valueOf(e));
+            log.error(e.getMessage());
             System.exit(1);
         }
         closeFile();

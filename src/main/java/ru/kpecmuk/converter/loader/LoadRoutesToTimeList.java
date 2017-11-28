@@ -60,7 +60,7 @@ public class LoadRoutesToTimeList extends LoadFile implements Action {
                 }
             }
         } catch (IOException e) {
-            log.error(String.valueOf(e));
+            log.error(e.getMessage());
             System.exit(1);
         }
         closeFile();

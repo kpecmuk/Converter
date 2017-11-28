@@ -54,7 +54,7 @@ public class RoutesToDB extends Database implements Action {
             con.commit();
             con.close();
         } catch (Exception e) {
-            log.error(String.valueOf(e));
+            log.error(e.getMessage());
             System.exit(1);
         }
         log.info("ROUTES created successfully");

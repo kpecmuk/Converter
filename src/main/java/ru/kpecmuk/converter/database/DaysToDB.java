@@ -55,7 +55,7 @@ public class DaysToDB extends Database implements Action {
             con.commit();
             con.close();
         } catch (Exception e) {
-            log.error(String.valueOf(e));
+            log.error(e.getMessage());
             System.exit(1);
         }
         log.info("DAYS created successfully");

@@ -25,7 +25,6 @@ public class CreateTables extends Database implements Action {
     /**
      * Создаём таблицы в базе данных
      * для будущего хранения в них данных
-     * TODO: сделать загрузку sql файлов для создания таблиц
      */
     @Override
     public void execute() {
@@ -46,7 +45,7 @@ public class CreateTables extends Database implements Action {
             con.commit();
             con.close();
         } catch (Exception e) {
-            log.error(String.valueOf(e));
+            log.error(e.getMessage());
             System.exit(1);
         }
         log.info("Tables: routes, stops, days, time created successfully");
