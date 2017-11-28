@@ -30,7 +30,7 @@ class LoadFile {
         try {
             this.fin = new BufferedReader(new FileReader(new File(fileName)));
         } catch (FileNotFoundException e) {
-            log.error(String.valueOf(e));
+            log.error(e.getMessage());
             System.exit(1);
         }
     }

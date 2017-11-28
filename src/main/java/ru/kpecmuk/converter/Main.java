@@ -16,6 +16,11 @@ public class Main {
     public static final String DAYS_FILE_NAME = PATH + "Days.txt";
     public static final String ROUTES_FILE_NAME = PATH + "Routes.txt";
 
+    public static final String ROUTES_TABLE_FILE_NAME = PATH + "Routes.sql";
+    public static final String STOPS_TABLE_FILE_NAME = PATH + "Stops.sql";
+    public static final String DAYS_TABLE_FILE_NAME = PATH + "Days.sql";
+    public static final String SCHEDULE_TABLE_FILE_NAME = PATH + "Schedule.sql";
+
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
