@@ -32,7 +32,7 @@ public class CreateTables extends Database implements Action {
             Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(getHost(), getLogin(), getPassword());
             con.setAutoCommit(false);
-            log.info("Opened database successfully");
+            log.info("Database connected");
 
             Statement stmt = con.createStatement();
 

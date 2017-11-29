@@ -14,7 +14,7 @@ public class Utils {
     /**
      * @param line строка на входе типа 6112438
      * @param i    порядковый индекс как в массиве
-     * @return result типа int, составленный из i и i+1
+     * @return getResult типа int, составленный из i и i+1
      */
     public int convertToInt(String line, int i) {
         int result = Character.getNumericValue(line.charAt(i));

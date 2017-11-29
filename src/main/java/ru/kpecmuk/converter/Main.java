@@ -24,6 +24,9 @@ public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
+
+        if (!new Connection().getResult()) System.exit(1);
+
         // Подключаем интерфейс Action
         Process process = new Process();
 
