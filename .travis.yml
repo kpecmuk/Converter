@@ -1,4 +1,1 @@
 language: java
-
-before_install:
- -chmode +x gradlew
