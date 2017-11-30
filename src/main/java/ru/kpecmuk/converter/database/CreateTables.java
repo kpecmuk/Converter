@@ -36,10 +36,10 @@ public class CreateTables extends Database implements Action {
 
             Statement stmt = con.createStatement();
 
-            stmt.executeUpdate(new LoadSQL(ROUTES_TABLE_FILE_NAME).get());
-            stmt.executeUpdate(new LoadSQL(STOPS_TABLE_FILE_NAME).get());
-            stmt.executeUpdate(new LoadSQL(DAYS_TABLE_FILE_NAME).get());
-            stmt.executeUpdate(new LoadSQL(SCHEDULE_TABLE_FILE_NAME).get());
+            stmt.executeUpdate(new LoadSQL(ROUTES_TABLE_FILE_NAME).getSQL());
+            stmt.executeUpdate(new LoadSQL(STOPS_TABLE_FILE_NAME).getSQL());
+            stmt.executeUpdate(new LoadSQL(DAYS_TABLE_FILE_NAME).getSQL());
+            stmt.executeUpdate(new LoadSQL(SCHEDULE_TABLE_FILE_NAME).getSQL());
 
             stmt.close();
             con.commit();

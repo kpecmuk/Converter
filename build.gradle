@@ -16,6 +16,7 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.25'
     compile 'ch.qos.logback:logback-classic:1.2.3'
     compile 'org.postgresql:postgresql:42.1.4'
+    compile 'com.google.guava:guava:20.0'
 }
 
 jar {

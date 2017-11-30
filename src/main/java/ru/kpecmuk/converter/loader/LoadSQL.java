@@ -31,7 +31,7 @@ public class LoadSQL extends LoadFile {
         }
     }
 
-    public String get() {
+    public String getSQL() {
         return this.sql;
     }
 }
